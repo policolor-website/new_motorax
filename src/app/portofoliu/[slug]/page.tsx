@@ -16,14 +16,14 @@ const projectsData: Record<string, {
     name: "Art Temple Residence",
     area: "București",
     category: "Construcții Civile",
-    description: "Art Temple Residence este un proiect de construcții civile realizat de Edil Adionit în București. Complexul rezidențial beneficiază de structură modernă, materiale de calitate superioară și finisaje premium. Proiectul demonstrează capacitatea echipei noastre de a livra construcții la standarde ridicate, respectând termenele și bugetul stabilit.",
+    description: "Art Temple Residence este un proiect de construcții civile realizat de PZ & GZ CONSTRUCT în București. Complexul rezidențial beneficiază de structură modernă, materiale de calitate superioară și finisaje premium. Proiectul demonstrează capacitatea echipei noastre de a livra construcții la standarde ridicate, respectând termenele și bugetul stabilit.",
     image: "/edil/art-temple.jpg",
   },
   "city-lights-pipera": {
     name: "City Lights Pipera",
     area: "Pipera, Ilfov",
     category: "Construcții Civile",
-    description: "City Lights Pipera este un proiect de construcții civile în zona Pipera, Ilfov. Complexul a fost construit cu materiale de top, respectând toate standardele de siguranță și durabilitate. Echipa Edil Adionit a gestionat întregul proiect de la fundație la finisaje.",
+    description: "City Lights Pipera este un proiect de construcții civile în zona Pipera, Ilfov. Complexul a fost construit cu materiale de top, respectând toate standardele de siguranță și durabilitate. Echipa PZ & GZ CONSTRUCT a gestionat întregul proiect de la fundație la finisaje.",
     image: "/edil/city-lights.jpg",
   },
   "dream-residence": {
@@ -44,14 +44,14 @@ const projectsData: Record<string, {
     name: "Central Address Residence",
     area: "București",
     category: "Construcții Civile",
-    description: "Central Address Residence este un proiect de construcții civile în zona centrală a Bucureștiului. Complexul combină arhitectură modernă cu materiale premium, oferind spații rezidențiale de lux. Echipa Edil Adionit a executat lucrările cu profesionalism și respect pentru termene.",
+    description: "Central Address Residence este un proiect de construcții civile în zona centrală a Bucureștiului. Complexul combină arhitectură modernă cu materiale premium, oferind spații rezidențiale de lux. Echipa PZ & GZ CONSTRUCT a executat lucrările cu profesionalism și respect pentru termene.",
     image: "/edil/central-address.jpg",
   },
   "envogue-residence": {
     name: "Envogue Residence",
     area: "București",
     category: "Construcții Civile",
-    description: "Envogue Residence este un proiect de construcții civile în București, caracterizat prin design modern și finisaje premium. Complexul rezidențial reflectă experiența de peste 20 de ani a echipei Edil Adionit în realizarea proiectelor complexe.",
+    description: "Envogue Residence este un proiect de construcții civile în București, caracterizat prin design modern și finisaje premium. Complexul rezidențial reflectă experiența de peste 20 de ani a echipei PZ & GZ CONSTRUCT în realizarea proiectelor complexe.",
     image: "/edil/envogue.jpg",
   },
 };

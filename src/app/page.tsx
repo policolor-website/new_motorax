@@ -7,7 +7,7 @@ import BuildingHero3D from "@/components/building-hero-3d";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// SERVICII — 6 servicii Edil Adionit
+// SERVICII — 6 servicii PZ & GZ CONSTRUCT
 // ============================================
 const services = [
   {
@@ -61,7 +61,7 @@ const services = [
 ];
 
 // ============================================
-// PROIECTE — 6 proiecte Edil Adionit
+// PROIECTE — 6 proiecte PZ & GZ CONSTRUCT
 // ============================================
 const projects = [
   {
@@ -109,7 +109,7 @@ const projects = [
 ];
 
 // ============================================
-// VALORI — 4 valori Edil Adionit
+// VALORI — 4 valori PZ & GZ CONSTRUCT
 // ============================================
 const values = [
   { icon: ShieldCheck, title: "Durabilitate", text: "Construim cu materiale de top pentru rezistență în timp. Calitatea lucrarilor este asigurată de echipamentele utilizate." },
@@ -231,7 +231,7 @@ export default function HomePage() {
               <div className="rounded-2xl overflow-hidden glass">
                 <img
                   src="/edil/about.png"
-                  alt="Edil Adionit"
+                  alt="PZ & GZ CONSTRUCT"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
