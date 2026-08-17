@@ -18,7 +18,7 @@ const servicesData: Record<string, {
     icon: Building2,
     title: "Construcții Civile / Industriale",
     hero: "Construcții Civile",
-    description: "PZ & GZ CONSTRUCT oferă servicii din domeniul construcțiilor pentru apartamente, case, sedii de firme, clădiri de birouri, anexe sau orice tip de construcție. Proiectele de care ne ocupăm includ construcția, renovarea și reabilitarea clădirilor afectate de diversi factori. De 20 de ani răspundem provocărilor și datorită acestora devenim tot mai buni, ținem pasul cu tehnologia, cu trend-urile în construcții și învățăm continuu. Adaptăm fiecare proiect în funcție de nevoi, dorințe și buget. Calitatea lucrărilor este asigurată de materialele și echipamentele de top utilizate, atât pentru construcțiile civile, cât și pentru cele industriale. Avem personal calificat, investim în dezvoltarea lor profesională, ne asigurăm că avem cei mai buni specialiști care să răspundă solicitărilor beneficiarilor noștri, indiferent de tipul lucrării.",
+    description: "Edil Adionit oferă servicii din domeniul construcțiilor pentru apartamente, case, sedii de firme, clădiri de birouri, anexe sau orice tip de construcție. Proiectele de care ne ocupăm includ construcția, renovarea și reabilitarea clădirilor afectate de diversi factori. De 20 de ani răspundem provocărilor și datorită acestora devenim tot mai buni, ținem pasul cu tehnologia, cu trend-urile în construcții și învățăm continuu. Adaptăm fiecare proiect în funcție de nevoi, dorințe și buget. Calitatea lucrărilor este asigurată de materialele și echipamentele de top utilizate, atât pentru construcțiile civile, cât și pentru cele industriale. Avem personal calificat, investim în dezvoltarea lor profesională, ne asigurăm că avem cei mai buni specialiști care să răspundă solicitărilor beneficiarilor noștri, indiferent de tipul lucrării.",
     features: [
       "Construcții apartamente, case, sedii firme, clădiri birouri",
       "Construcții anexe și orice tip de construcție",
@@ -205,7 +205,7 @@ export default function ServiceDetailPage() {
             <h3 className="font-display text-2xl font-bold text-cream mb-4">
               Vrei o ofertă personalizată? Apelează-ne!
             </h3>
-            <p className="text-ash mb-6"><a href="tel:0722155956" className="text-gold text-2xl font-bold">0722 155 956</a></p>
+            <p className="text-ash mb-6"><a href="tel:0755129157" className="text-gold text-2xl font-bold">0755 129 157</a></p>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"

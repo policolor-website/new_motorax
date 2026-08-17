@@ -25,7 +25,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/edil/about.png" alt="PZ & GZ CONSTRUCT" className="w-full h-full object-cover" />
+          <img src="/edil/about.png" alt="Edil Adionit" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-ink/70" />
         </div>
         <div className="relative z-10 h-full flex items-center justify-center px-6">
@@ -81,7 +81,7 @@ export default function AboutPage() {
               <div className="rounded-2xl overflow-hidden glass">
                 <img
                   src="/edil/about.png"
-                  alt="PZ & GZ CONSTRUCT"
+                  alt="Edil Adionit"
                   className="w-full h-[400px] object-cover"
                 />
               </div>

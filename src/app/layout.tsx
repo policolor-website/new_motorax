@@ -5,10 +5,10 @@ import Chef3DWrapper from "@/components/chef-3d-wrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PZ & GZ CONSTRUCT | Construcții București și Ilfov",
+  title: "Edil Adionit | Construcții București și Ilfov",
   description: "Construcții civile și industriale, construcții case, mentenanță, amenajări interioare, instalații electrice și sanitare, proiectare. Peste 20 ani experiență.",
   openGraph: {
-    title: "PZ & GZ CONSTRUCT | Construcții București și Ilfov",
+    title: "Edil Adionit | Construcții București și Ilfov",
     description: "Cu o experiență de peste 20 de ani, realizăm proiecte complexe și oferim soluții moderne. 342+ proiecte, 270+ clienți mulțumiți.",
     locale: "ro_RO",
     type: "website",
