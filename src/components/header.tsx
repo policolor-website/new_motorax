@@ -7,10 +7,12 @@ import { usePathname } from "next/navigation";
 import { brand } from "@/lib/brand";
 
 const navItems = [
-  { href: "/", label: "Acasă" },
-  { href: "/despre-noi", label: "Despre Noi" },
-  { href: "/servicii", label: "Servicii" },
-  { href: "/portofoliu", label: "Portofoliu" },
+  { href: "/", label: "Home" },
+  { href: "/despre-noi", label: "About" },
+  { href: "/servicii", label: "Services" },
+  { href: "/brand-uri", label: "Brands" },
+  { href: "/evenimente", label: "Events" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -52,9 +54,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
-          <a href={`tel:${brand.phone}`} className={`flex items-center gap-2 text-sm transition-colors ${scrolled ? "text-ash hover:text-gold" : "text-white hover:text-gold"}`}>
+          <a href={brand.whatsapp} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-2 text-sm transition-colors ${scrolled ? "text-ash hover:text-gold" : "text-white hover:text-gold"}`}>
             <Phone size={14} />
-            <span>Cere o ofertă</span>
+            <span>Book Appointment</span>
           </a>
         </div>
 
@@ -75,8 +77,8 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <a href={`tel:${brand.phone}`} className="flex items-center gap-2 text-gold text-sm mt-4 pt-4 border-t border-gold/10">
-              <Phone size={14} /> {brand.phone}
+            <a href={brand.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gold text-sm mt-4 pt-4 border-t border-gold/10">
+              <Phone size={14} /> Book Appointment
             </a>
           </nav>
         </div>

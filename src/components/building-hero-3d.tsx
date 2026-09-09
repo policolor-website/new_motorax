@@ -36,9 +36,9 @@ export default function BuildingHero3D() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.0;
+    renderer.toneMappingExposure = 1.6;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.domElement.style.display = "block";
     renderer.domElement.style.width = "100%";
@@ -50,9 +50,9 @@ export default function BuildingHero3D() {
     scene.environment = pmremGenerator.fromScene(roomEnv, 0.04).texture;
 
     // ============================================
-    // Lighting
+    // Lighting — tuned for dark car on dark bg
     // ============================================
-    const keyLight = new THREE.DirectionalLight(0xfff4e0, 2.5);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 3.5);
     keyLight.position.set(30, 50, 30);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 2048;
@@ -66,16 +66,41 @@ export default function BuildingHero3D() {
     keyLight.shadow.bias = -0.0005;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0x88aaff, 0.5);
+    const fillLight = new THREE.DirectionalLight(0x88aaff, 1.2);
     fillLight.position.set(-30, 20, -20);
     scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0xffaa66, 0.8);
-    rimLight.position.set(0, 15, -40);
-    scene.add(rimLight);
+    // Strong rim lights to outline the dark car silhouette
+    const rimLight1 = new THREE.DirectionalLight(0xff8800, 3.0);
+    rimLight1.position.set(0, 15, -50);
+    scene.add(rimLight1);
 
-    const ambient = new THREE.AmbientLight(0x334455, 0.5);
+    const rimLight2 = new THREE.DirectionalLight(0xff4400, 2.5);
+    rimLight2.position.set(-50, 10, 0);
+    scene.add(rimLight2);
+
+    const rimLight3 = new THREE.DirectionalLight(0x00aaff, 2.0);
+    rimLight3.position.set(50, 10, 0);
+    scene.add(rimLight3);
+
+    // Extra rim from top-back for highlight on roof
+    const rimLight4 = new THREE.DirectionalLight(0xffffff, 2.0);
+    rimLight4.position.set(0, 30, -30);
+    scene.add(rimLight4);
+
+    // Spot light from above for studio feel
+    const spot1 = new THREE.SpotLight(0xffffff, 200, 100, Math.PI / 6, 0.5, 2);
+    spot1.position.set(0, 40, 20);
+    spot1.target.position.set(0, 0, 0);
+    scene.add(spot1);
+    scene.add(spot1.target);
+
+    const ambient = new THREE.AmbientLight(0x666688, 0.8);
     scene.add(ambient);
+
+    // Hemisphere light for natural sky/ground bounce
+    const hemiLight = new THREE.HemisphereLight(0x8888ff, 0x442200, 0.6);
+    scene.add(hemiLight);
 
     // ============================================
     // Helpers
@@ -86,13 +111,23 @@ export default function BuildingHero3D() {
 
     // ============================================
     // Camera keyframes
+    // Phase 1 (0-0.55): Assembly — camera orbits around car
+    // Phase 2 (0.55-1.0): Tour — camera passes through/around car
     // ============================================
     const CAMERA_KEYFRAMES = [
+      // Assembly phase
       { progress: 0.00, position: [0, 20, 80],   target: [0, 10, 0] },
-      { progress: 0.25, position: [40, 15, 70],  target: [0, 10, 0] },
-      { progress: 0.50, position: [70, 25, 40],  target: [0, 10, 0] },
-      { progress: 0.75, position: [40, 30, -50], target: [0, 10, 0] },
-      { progress: 1.00, position: [0, 20, 60],   target: [0, 10, 0] },
+      { progress: 0.15, position: [40, 15, 70],  target: [0, 10, 0] },
+      { progress: 0.30, position: [70, 25, 40],  target: [0, 10, 0] },
+      { progress: 0.45, position: [40, 30, -50], target: [0, 10, 0] },
+      { progress: 0.55, position: [0, 15, 50],   target: [0, 8, 0] },
+      // Tour phase — pass through the car
+      { progress: 0.62, position: [0, 8, 35],    target: [0, 5, 0] },   // approach front
+      { progress: 0.70, position: [0, 5, 15],    target: [0, 3, -10] }, // close to front, looking through
+      { progress: 0.78, position: [0, 4, -5],   target: [0, 3, -20] }, // inside/through the car
+      { progress: 0.85, position: [0, 5, -25],  target: [0, 3, -40] }, // exiting the back
+      { progress: 0.92, position: [20, 8, -40],  target: [0, 5, -30] }, // swing around to side-back
+      { progress: 1.00, position: [0, 20, 60],   target: [0, 8, 0] },  // final hero shot
     ];
 
     // ============================================
@@ -102,7 +137,8 @@ export default function BuildingHero3D() {
     let components: any[] = [];
     let scrollProgress = 0;
     let smoothScrollProgress = 0;
-    const clock = new THREE.Clock();
+    const clock = new THREE.Timer();
+    clock.connect(document);
     let modelLoaded = false;
 
     // ============================================
@@ -167,13 +203,12 @@ export default function BuildingHero3D() {
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
     loader.setDRACOLoader(dracoLoader);
-    console.log("%cLoading sehir.glb (15MB Draco — city+street)...", "color: #d4a050;");
+    console.log("%cLoading car.glb (Bugatti CSR2)...", "color: #d4a050;");
     loader.load(
-      "/sehir.glb",
+      "/car.glb",
       (gltf) => {
-        console.log("%csehir.glb loaded successfully!", "color: #00ff00; font-weight: bold;");
+        console.log("%ccar.glb loaded successfully!", "color: #00ff00; font-weight: bold;");
         buildingModel = gltf.scene;
-        // Model is already Y-up from Blender export — no rotation needed
 
         const box = new THREE.Box3().setFromObject(buildingModel);
         const size = box.getSize(new THREE.Vector3());
@@ -191,7 +226,69 @@ export default function BuildingHero3D() {
           if (child.isMesh) {
             child.castShadow = true;
             child.receiveShadow = true;
-            // Keep original textures (real facade/road/roof materials)
+            // Force all body/paint materials to deep black
+            if (child.material) {
+              const mats = Array.isArray(child.material) ? child.material : [child.material];
+              mats.forEach((mat: any) => {
+                if (mat.name && (
+                  mat.name.includes("Coloured") ||
+                  mat.name.includes("PaletteMaterial") ||
+                  mat.name.includes("CarPaint") ||
+                  mat.name.includes("Calliper_Color")
+                )) {
+                  // Deep black car paint
+                  if (mat.color) {
+                    mat.color.set(0x0a0a0a);
+                  }
+                  if (mat.metalness !== undefined) {
+                    mat.metalness = 0.95;
+                  }
+                  if (mat.roughness !== undefined) {
+                    mat.roughness = 0.25;
+                  }
+                  mat.envMapIntensity = 2.0;
+                }
+                // Carbon fiber — keep dark, boost reflections
+                if (mat.name && mat.name.includes("Carbon")) {
+                  if (mat.color) {
+                    mat.color.set(0x111111);
+                  }
+                  if (mat.metalness !== undefined) {
+                    mat.metalness = 0.8;
+                  }
+                  if (mat.roughness !== undefined) {
+                    mat.roughness = 0.35;
+                  }
+                  mat.envMapIntensity = 1.5;
+                }
+                // Tires — deep black rubber
+                if (mat.name && mat.name.includes("Tire")) {
+                  if (mat.color) {
+                    mat.color.set(0x050505);
+                  }
+                  if (mat.metalness !== undefined) {
+                    mat.metalness = 0.0;
+                  }
+                  if (mat.roughness !== undefined) {
+                    mat.roughness = 0.85;
+                  }
+                  mat.envMapIntensity = 0.3;
+                }
+                // Rims — shiny metallic
+                if (mat.name && (mat.name.includes("Rim") || mat.name.includes("Rotor"))) {
+                  if (mat.color) {
+                    mat.color.set(0x1a1a1a);
+                  }
+                  if (mat.metalness !== undefined) {
+                    mat.metalness = 1.0;
+                  }
+                  if (mat.roughness !== undefined) {
+                    mat.roughness = 0.15;
+                  }
+                  mat.envMapIntensity = 2.0;
+                }
+              });
+            }
           }
         });
 
@@ -237,7 +334,7 @@ export default function BuildingHero3D() {
             finalRot.z + exploded.rotation.z
           );
 
-          const startProgress = (i / total) * 0.9;
+          const startProgress = (i / total) * 0.55;
           const endProgress = startProgress + 0.1;
 
           components.push({
@@ -286,7 +383,7 @@ export default function BuildingHero3D() {
     // LOCK: user cannot scroll past hero until building is fully assembled
     // ============================================
     let scrollUnlocked = false;
-    const heroHeight = () => window.innerHeight * 4;
+    const heroHeight = () => window.innerHeight * 6;
     const animRange = () => heroHeight() - window.innerHeight;
 
     const onScroll = () => {
@@ -343,12 +440,12 @@ export default function BuildingHero3D() {
     // Update functions
     // ============================================
     function updateComponents() {
-      // Faster lerp near the end so building completes before scroll passes hero
-      const lerpSpeed = scrollProgress > 0.85 ? 0.25 : 0.12;
+      // Faster lerp near the end so car completes before tour phase
+      const lerpSpeed = scrollProgress > 0.50 ? 0.25 : 0.12;
       smoothScrollProgress = lerp(smoothScrollProgress, scrollProgress, lerpSpeed);
 
-      // Unlock scroll only when building is FULLY assembled (all pieces + final rotation)
-      if (!scrollUnlocked && smoothScrollProgress >= 0.99) {
+      // Unlock scroll when assembly is done (smoothScrollProgress >= 0.55)
+      if (!scrollUnlocked && smoothScrollProgress >= 0.55) {
         scrollUnlocked = true;
         console.log("%cBuilding complete — scroll unlocked!", "color: #44ff44; font-weight: bold;");
       }
@@ -397,7 +494,8 @@ export default function BuildingHero3D() {
       const target2 = new THREE.Vector3(...(k2.target as [number, number, number]));
       const target = new THREE.Vector3().lerpVectors(target1, target2, eased);
 
-      const time = clock.getElapsedTime();
+      clock.update();
+      const time = clock.getElapsed();
       const orbitAmount = (1 - sp) * 0.3 + 0.05;
       camera.position.x += Math.sin(time * 0.12) * orbitAmount;
       camera.position.z += Math.cos(time * 0.10) * orbitAmount;

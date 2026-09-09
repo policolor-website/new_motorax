@@ -14,32 +14,34 @@ export default function Footer() {
               <span className="text-[10px] tracking-[0.3em] uppercase text-ash mt-1">{brand.tagline}</span>
             </div>
             <p className="text-sm text-ash leading-relaxed mb-6">
-              Cu o experiență de peste 20 de ani suntem partenerul tău perfect pentru viitorul tău proiect.
+              An end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.
             </p>
-            <p className="text-xs text-stone">Peste 20 ani • 342+ proiecte • București & Ilfov</p>
+            <p className="text-xs text-stone">Established 2013 • Dubai, UAE</p>
           </div>
 
-          {/* Servicii */}
+          {/* Services */}
           <div>
-            <h4 className="font-display text-lg text-gold mb-5">Serviciile noastre</h4>
+            <h4 className="font-display text-lg text-gold mb-5">Services</h4>
             <ul className="space-y-3">
-              <li><Link href="/servicii/constructii-civile-industriale" className="text-sm text-ash hover:text-gold transition-colors">Construcții Civile / Industriale</Link></li>
-              <li><Link href="/servicii/constructii-case" className="text-sm text-ash hover:text-gold transition-colors">Construcții Case</Link></li>
-              <li><Link href="/servicii/mentenanta" className="text-sm text-ash hover:text-gold transition-colors">Mentenanță</Link></li>
-              <li><Link href="/servicii/amenajari-interioare" className="text-sm text-ash hover:text-gold transition-colors">Amenajări Interioare</Link></li>
-              <li><Link href="/servicii/instalatii-electrice-sanitare" className="text-sm text-ash hover:text-gold transition-colors">Instalații Electrice și Sanitare</Link></li>
-              <li><Link href="/servicii/proiectare" className="text-sm text-ash hover:text-gold transition-colors">Proiectare</Link></li>
+              <li><Link href="/servicii/engine-tuning" className="text-sm text-ash hover:text-gold transition-colors">Engine & ECU Tuning</Link></li>
+              <li><Link href="/servicii/dyno-testing" className="text-sm text-ash hover:text-gold transition-colors">Dyno Testing</Link></li>
+              <li><Link href="/servicii/exhaust-brake-upgrades" className="text-sm text-ash hover:text-gold transition-colors">Exhaust & Brake Upgrades</Link></li>
+              <li><Link href="/servicii/turbo-upgrades" className="text-sm text-ash hover:text-gold transition-colors">Turbo Upgrades</Link></li>
+              <li><Link href="/servicii/maintenance" className="text-sm text-ash hover:text-gold transition-colors">Maintenance</Link></li>
+              <li><Link href="/servicii" className="text-sm text-ash hover:text-gold transition-colors">View all Services</Link></li>
             </ul>
           </div>
 
-          {/* Linkuri */}
+          {/* Company */}
           <div>
-            <h4 className="font-display text-lg text-gold mb-5">Linkuri</h4>
+            <h4 className="font-display text-lg text-gold mb-5">Company</h4>
             <ul className="space-y-3">
-              <li><Link href="/" className="text-sm text-ash hover:text-gold transition-colors">Acasă</Link></li>
-              <li><Link href="/despre-noi" className="text-sm text-ash hover:text-gold transition-colors">Despre Noi</Link></li>
-              <li><Link href="/servicii" className="text-sm text-ash hover:text-gold transition-colors">Servicii</Link></li>
-              <li><Link href="/portofoliu" className="text-sm text-ash hover:text-gold transition-colors">Portofoliu</Link></li>
+              <li><Link href="/" className="text-sm text-ash hover:text-gold transition-colors">Home</Link></li>
+              <li><Link href="/despre-noi" className="text-sm text-ash hover:text-gold transition-colors">About Us</Link></li>
+              <li><Link href="/brand-uri" className="text-sm text-ash hover:text-gold transition-colors">Brands</Link></li>
+              <li><Link href="/evenimente" className="text-sm text-ash hover:text-gold transition-colors">Events</Link></li>
+              <li><Link href="/blog" className="text-sm text-ash hover:text-gold transition-colors">Blog</Link></li>
+              <li><Link href="/cariere" className="text-sm text-ash hover:text-gold transition-colors">Careers</Link></li>
               <li><Link href="/contact" className="text-sm text-ash hover:text-gold transition-colors">Contact</Link></li>
             </ul>
           </div>
@@ -71,7 +73,7 @@ export default function Footer() {
         <div className="hairline h-px w-full mb-8" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-stone">
-            © {new Date().getFullYear()} {brand.name}. Toate drepturile rezervate.
+            © {new Date().getFullYear()} {brand.name}. All rights reserved.
           </p>
           <p className="text-xs text-stone">{brand.tagline}</p>
         </div>

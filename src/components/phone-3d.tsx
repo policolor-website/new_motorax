@@ -1,21 +1,15 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { restaurants } from "@/lib/data";
 import { brand } from "@/lib/brand";
 
 export default function Phone3D() {
   const mountRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const pathname = usePathname();
 
-  const restaurantMatch = pathname?.match(/^\/restaurante\/([\w-]+)$/);
-  const restaurant = restaurantMatch ? restaurants.find(r => r.slug === restaurantMatch[1]) : null;
-  const phone = restaurant?.phone ?? "0734 380 188";
-  const phoneLink = phone.replace(/\s/g, "");
+  const phoneLink = brand.phone.replace(/\s/g, "");
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -63,11 +57,10 @@ export default function Phone3D() {
 
     // Load GLB
     const loader = new GLTFLoader();
-    let model: THREE.Group | null = null;
     let pivot: THREE.Group | null = null;
 
     loader.load("/phone.glb", (gltf) => {
-      model = gltf.scene;
+      const model = gltf.scene;
 
       // Pivot group for Y rotation
       pivot = new THREE.Group();
@@ -137,13 +130,9 @@ export default function Phone3D() {
     };
     animate();
 
-    const onResize = () => {};
-    window.addEventListener("resize", onResize);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("resize", onResize);
       if (mount.contains(renderer.domElement)) {
         mount.removeChild(renderer.domElement);
       }
@@ -162,11 +151,7 @@ export default function Phone3D() {
         <div className="absolute top-[110px] md:top-[160px] left-1/2 -translate-x-1/2 bg-white rounded-2xl px-3 py-2 md:px-5 md:py-3 shadow-2xl z-10 animate-bubble-pop whitespace-nowrap max-w-[170px] md:max-w-none overflow-hidden">
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45" />
           <p className="font-display text-xs md:text-sm text-black font-semibold text-center">Solicită ofertă</p>
-          {restaurant ? (
-            <a href={`tel:${phoneLink}`} className="text-black text-sm md:text-lg font-bold block text-center pointer-events-auto hover:text-gold transition-colors">{phone}</a>
-          ) : (
-            <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="text-black text-sm md:text-lg font-bold block text-center pointer-events-auto hover:text-gold transition-colors">{brand.phone}</a>
-          )}
+          <a href={`tel:${phoneLink}`} className="text-black text-sm md:text-lg font-bold block text-center pointer-events-auto hover:text-gold transition-colors">{brand.phone}</a>
         </div>
       </div>
     </div>
