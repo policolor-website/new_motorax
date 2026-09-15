@@ -242,7 +242,7 @@ export default function ContactPage() {
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Visit us</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Our Location</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              Unit A - 15 - Street 15, Al Quoz Industrial Area 3, Dubai, United Arab Emirates
+              25B Al Manama Street, Ras Al Khor Industrial Area 2, Dubai, United Arab Emirates
             </p>
             <div className="flex items-center justify-center gap-2 mt-6 text-sm text-stone">
               <Clock size={16} className="text-gold" />
@@ -273,7 +273,7 @@ export default function ContactPage() {
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="DAS Tuning Location"
+              title="The Car Dr's Garage Location"
             />
           </motion.div>
         </div>

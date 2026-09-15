@@ -107,10 +107,10 @@ const blueprints = [
 // GALLERY
 // ============================================
 const galleryImages = [
-  { src: "/das/gallery/featured-1.png", alt: "DAS Tuning Build" },
-  { src: "/das/gallery/featured-2.png", alt: "DAS Tuning Build" },
-  { src: "/das/gallery/featured-3.png", alt: "DAS Tuning Build" },
-  { src: "/das/gallery/featured-4.png", alt: "DAS Tuning Build" },
+  { src: "/das/gallery/featured-1.png", alt: "The Car Dr's Garage Build" },
+  { src: "/das/gallery/featured-2.png", alt: "The Car Dr's Garage Build" },
+  { src: "/das/gallery/featured-3.png", alt: "The Car Dr's Garage Build" },
+  { src: "/das/gallery/featured-4.png", alt: "The Car Dr's Garage Build" },
   { src: "/das/gallery/audi-1.jpg", alt: "Audi Performance Build" },
   { src: "/das/gallery/bmw-1.jpg", alt: "BMW Performance Build" },
 ];
@@ -172,7 +172,7 @@ export default function HomePage() {
   const welcomeScale = 1 - (scrollProgress < 0.05 ? scrollProgress / 0.05 : 1) * 0.1;
   const welcomeY = -(scrollProgress < 0.05 ? scrollProgress / 0.05 : 1) * 30;
 
-  // DAS TUNING: appears at ~0.58 (assembly done, tour starts), fully visible at 0.68
+  // Brand name: appears at ~0.58 (assembly done, tour starts), fully visible at 0.68
   const tuningOpacity = scrollProgress > 0.58 ? Math.min(1, (scrollProgress - 0.58) / 0.1) : 0;
   const tuningY = scrollProgress > 0.58 ? (1 - Math.min(1, (scrollProgress - 0.58) / 0.1)) * 40 : 40;
 
@@ -207,20 +207,20 @@ export default function HomePage() {
             </h1>
           </div>
 
-          {/* DAS TUNING — appears when animation completes */}
+          {/* BRAND NAME — appears when animation completes */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-4xl text-center px-6 pointer-events-none">
             <h1
               style={{ opacity: tuningOpacity, transform: `translateY(${tuningY}px)` }}
               className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-cream tracking-[0.1em] sm:tracking-[0.15em] mb-4 sm:mb-6 break-words"
             >
-              DAS TUNING
+              {brand.name.toUpperCase()}
             </h1>
 
             <p
               style={{ opacity: subtitleOpacity, transform: `translateY(${subtitleY}px)` }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-cream italic font-light mb-6 sm:mb-8 md:mb-10 px-4"
             >
-              Experience Your Car's Full Potential
+              {brand.tagline}
             </p>
 
             <div
@@ -483,9 +483,9 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Gallery</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the DAS Community</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the Garage Community</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with #dastuning for a chance to be featured.
+              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with #thecardrsgarage for a chance to be featured.
             </p>
           </motion.div>
 

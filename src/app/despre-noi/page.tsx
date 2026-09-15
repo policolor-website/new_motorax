@@ -49,7 +49,7 @@ export default function AboutPage() {
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-6 block">About {brand.name}</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-8 leading-tight">
-              Discover the <span className="gold-text">DAS Tuning</span> Difference
+              Discover the <span className="gold-text">The Car Dr's Garage</span> Difference
             </h1>
             <p className="text-lg md:text-xl text-ash leading-relaxed max-w-3xl mx-auto">
               Where engineering, care for the driver experience, and respect for the vehicle come together to shape a more considered approach to performance.
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 Built on <span className="gold-text">European Craft</span>
               </h2>
               <p className="text-lg text-ash leading-relaxed">
-                We began our journey in the United Kingdom, with specialist work on Fiat and Lancia platforms. In 2013, our expertise led us to Dubai, where DAS Tuning was established. We've been a performance workshop working on European and other premium platforms ever since, with a focus on thoughtful engineering and careful execution, leading to powerful results.
+                We began our journey in the United Kingdom, with specialist work on Fiat and Lancia platforms. In 2013, our expertise led us to Dubai, where The Car Dr's Garage was established. We've been a performance workshop working on European and other premium platforms ever since, with a focus on thoughtful engineering and careful execution, leading to powerful results.
               </p>
             </motion.div>
 
@@ -110,7 +110,7 @@ export default function AboutPage() {
               <div className="rounded-2xl overflow-hidden glass">
                 <img
                   src="/das/gallery/featured-2.png"
-                  alt="DAS Tuning Workshop"
+                  alt="The Car Dr's Garage Workshop"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <p className="font-display text-lg font-bold text-cream">Established in Dubai</p>
-                    <p className="text-sm text-stone">Al Quoz Industrial Area 3</p>
+                    <p className="text-sm text-stone">Ras Al Khor Industrial Area 2</p>
                   </div>
                 </div>
                 <div className="h-px hairline mb-6" />

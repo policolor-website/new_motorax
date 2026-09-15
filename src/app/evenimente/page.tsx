@@ -16,9 +16,9 @@ const pastEvents = [
     image: "/das/gallery/featured-1.png",
   },
   {
-    title: "DAS Dyno Day – BMW Performance Showcase",
+    title: "Garage Dyno Day – BMW Performance Showcase",
     date: "March 22, 2026",
-    location: "DAS Tuning HQ, Al Quoz, Dubai",
+    location: "The Car Dr's Garage HQ, Ras Al Khor, Dubai",
     image: "/das/gallery/bmw-1.jpg",
   },
 ];
@@ -27,10 +27,10 @@ const pastEvents = [
 // GALLERY IMAGES
 // ============================================
 const galleryImages = [
-  { src: "/das/gallery/featured-1.png", alt: "DAS Tuning community event" },
-  { src: "/das/gallery/featured-2.png", alt: "DAS Tuning performance showcase" },
-  { src: "/das/gallery/featured-3.png", alt: "DAS Tuning dyno day" },
-  { src: "/das/gallery/featured-4.png", alt: "DAS Tuning car meet" },
+  { src: "/das/gallery/featured-1.png", alt: "The Car Dr's Garage community event" },
+  { src: "/das/gallery/featured-2.png", alt: "The Car Dr's Garage performance showcase" },
+  { src: "/das/gallery/featured-3.png", alt: "The Car Dr's Garage dyno day" },
+  { src: "/das/gallery/featured-4.png", alt: "The Car Dr's Garage car meet" },
   { src: "/das/gallery/audi-1.jpg", alt: "Audi performance build" },
   { src: "/das/gallery/bmw-1.jpg", alt: "BMW performance build" },
 ];
@@ -45,7 +45,7 @@ export default function EventsPage() {
         <div className="absolute inset-0">
           <img
             src="/das/gallery/featured-1.png"
-            alt="DAS Tuning events"
+            alt="The Car Dr's Garage events"
             className="w-full h-full object-cover"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
@@ -226,9 +226,9 @@ export default function EventsPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Gallery</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the DAS Community</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the Garage Community</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with #dastuning for a chance to be featured in our cinematic community gallery.
+              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with #thecardrsgarage for a chance to be featured in our cinematic community gallery.
             </p>
           </motion.div>
 

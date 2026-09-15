@@ -4,11 +4,11 @@ import Footer from "@/components/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DAS Tuning | Experience Your Car's Full Potential",
+  title: "The Car Dr's Garage | Experience Your Car's Full Potential",
   description:
-    "DAS Tuning is an end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof. Dubai, UAE.",
+    "The Car Dr's Garage is an end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof. Dubai, UAE.",
   openGraph: {
-    title: "DAS Tuning | Experience Your Car's Full Potential",
+    title: "The Car Dr's Garage | Experience Your Car's Full Potential",
     description:
       "An end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.",
     locale: "en_US",
