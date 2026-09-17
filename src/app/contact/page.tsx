@@ -73,12 +73,20 @@ export default function ContactPage() {
                 <Phone size={20} className="text-gold" />
               </div>
               <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Phone</h3>
-              <a
-                href={`tel:${brand.phone.replace(/\s/g, "")}`}
-                className="text-sm text-ash hover:text-gold transition-colors"
-              >
-                {brand.phone}
-              </a>
+              <div className="flex flex-col gap-1">
+                <a
+                  href={`tel:${brand.phone.replace(/\s/g, "")}`}
+                  className="text-sm text-ash hover:text-gold transition-colors"
+                >
+                  {brand.phone}
+                </a>
+                <a
+                  href={`tel:${brand.phone2.replace(/\s/g, "")}`}
+                  className="text-sm text-ash hover:text-gold transition-colors"
+                >
+                  {brand.phone2}
+                </a>
+              </div>
             </motion.div>
 
             <motion.div

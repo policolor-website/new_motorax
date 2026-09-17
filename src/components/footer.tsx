@@ -56,7 +56,10 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={16} className="text-gold mt-0.5 shrink-0" />
-                <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="text-sm text-ash hover:text-gold transition-colors">{brand.phone}</a>
+                <div className="flex flex-col gap-1">
+                  <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="text-sm text-ash hover:text-gold transition-colors">{brand.phone}</a>
+                  <a href={`tel:${brand.phone2.replace(/\s/g, "")}`} className="text-sm text-ash hover:text-gold transition-colors">{brand.phone2}</a>
+                </div>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-0.5 shrink-0" />
