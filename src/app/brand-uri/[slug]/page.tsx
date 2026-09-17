@@ -229,8 +229,8 @@ const generateFaqs = (brandName: string) => [
     a: `When performed correctly, ${brandName} tuning can maintain reliability by operating within safe limits. Our approach is conservative and data-driven, prioritising long-term engine health. We recommend discussing warranty considerations with our team before proceeding.`,
   },
   {
-    q: `Is The Car Dr's Garage a ${brandName} service center?`,
-    a: `Yes. The Car Dr's Garage operates as a specialized ${brandName} service center, offering expert servicing, diagnostics, and performance upgrades carried out by technicians who understand ${brandName} engineering in depth.`,
+    q: `Is ${brand.name} a ${brandName} service center?`,
+    a: `Yes. ${brand.name} operates as a specialized ${brandName} service center, offering expert servicing, diagnostics, and performance upgrades carried out by technicians who understand ${brandName} engineering in depth.`,
   },
   {
     q: `Can I service and tune my ${brandName} together?`,

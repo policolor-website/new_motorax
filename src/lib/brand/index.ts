@@ -1,19 +1,26 @@
 // ============================================
-// BRAND CONFIG — The Car Dr's Garage
+// BRAND CONFIG — RENNtech / SilberArrows
 // ============================================
 
 export const brand = {
-  name: "The Car Dr's Garage",
+  name: "RENNtech",
   tagline: "Experience Your Car's Full Potential",
   description:
-    "The Car Dr's Garage is an end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.",
-  phone: "+971 52 776 3275",
-  email: "sales.thecardrsgarage@gmail.com",
-  address: "25B Al Manama Street, Ras Al Khor Industrial Area 2, Dubai",
-  website: "thecardrsgarage.com",
-  program: "Sat - Joi: 9:00 - 18:00",
+    "RENNtech is an end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.",
+  phone: "+971 4 380 5515",
+  email: "info@silberarrows.com",
+  address: "Al Quoz 1, Al Manara Rd & 1st Al Khail St, Dubai",
+  area: "Al Quoz 1",
+  city: "Dubai",
+  country: "United Arab Emirates",
+  website: "silberarrows.com",
+  program: "Mon - Sat: 8:00 - 18:00",
   founded: "2013",
-  company: "The Car Dr's Garage",
-  whatsapp: "https://wa.me/971527763275",
-  mapEmbed: "https://maps.google.com/maps?ll=25.124592,55.221849&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=5578160495819034093",
+  company: "SilberArrows 1934 Auto Repairing LLC",
+  whatsapp: "https://wa.me/97143805515",
+  mapEmbed:
+    "https://maps.google.com/maps?q=SilberArrows%2C%20Al%20Manara%20Road%2C%20Al%20Quoz%201%2C%20Dubai&z=16&output=embed",
+  mapLink:
+    "https://www.google.com/maps/search/?api=1&query=SilberArrows+1934+Auto+Repairing+LLC+Dubai",
+  hashtag: "#renntech",
 } as const;

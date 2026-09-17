@@ -107,10 +107,10 @@ const blueprints = [
 // GALLERY
 // ============================================
 const galleryImages = [
-  { src: "/das/gallery/featured-1.png", alt: "The Car Dr's Garage Build" },
-  { src: "/das/gallery/featured-2.png", alt: "The Car Dr's Garage Build" },
-  { src: "/das/gallery/featured-3.png", alt: "The Car Dr's Garage Build" },
-  { src: "/das/gallery/featured-4.png", alt: "The Car Dr's Garage Build" },
+  { src: "/das/gallery/featured-1.png", alt: `${brand.name} Build` },
+  { src: "/das/gallery/featured-2.png", alt: `${brand.name} Build` },
+  { src: "/das/gallery/featured-3.png", alt: `${brand.name} Build` },
+  { src: "/das/gallery/featured-4.png", alt: `${brand.name} Build` },
   { src: "/das/gallery/audi-1.jpg", alt: "Audi Performance Build" },
   { src: "/das/gallery/bmw-1.jpg", alt: "BMW Performance Build" },
 ];
@@ -211,7 +211,7 @@ export default function HomePage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-4xl text-center px-6 pointer-events-none">
             <h1
               style={{ opacity: tuningOpacity, transform: `translateY(${tuningY}px)` }}
-              className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-cream tracking-[0.1em] sm:tracking-[0.15em] mb-4 sm:mb-6 break-words"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-cream tracking-[0.08em] sm:tracking-[0.12em] mb-4 sm:mb-6 whitespace-nowrap"
             >
               {brand.name.toUpperCase()}
             </h1>
@@ -485,7 +485,7 @@ export default function HomePage() {
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Gallery</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the Garage Community</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with #thecardrsgarage for a chance to be featured.
+              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with {brand.hashtag} for a chance to be featured.
             </p>
           </motion.div>
 

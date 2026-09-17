@@ -14,6 +14,16 @@ export default function BuildingHero3D() {
     if (!mount) return;
 
     // ============================================
+    // Mobile detection — used to scale back rendering
+    // cost (shadows, AA, pixel ratio, light count, env
+    // map quality) on phones/low-power GPUs.
+    // ============================================
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 768 ||
+        /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent));
+
+    // ============================================
     // Scene setup
     // ============================================
     const scene = new THREE.Scene();
@@ -29,13 +39,13 @@ export default function BuildingHero3D() {
     camera.lookAt(0, 10, 0);
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isMobile,
       alpha: true,
       powerPreference: "high-performance",
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+    renderer.shadowMap.enabled = !isMobile;
     renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.6;
@@ -45,62 +55,78 @@ export default function BuildingHero3D() {
     renderer.domElement.style.height = "100%";
     mount.appendChild(renderer.domElement);
 
-    const pmremGenerator = new THREE.PMREMGenerator(renderer);
-    const roomEnv = new RoomEnvironment();
-    scene.environment = pmremGenerator.fromScene(roomEnv, 0.04).texture;
+    // PMREM environment — skip on mobile (shader compile + generation
+    // cost is significant on weak GPUs); fall back to a flat ambient look.
+    let pmremGenerator: THREE.PMREMGenerator | null = null;
+    if (!isMobile) {
+      pmremGenerator = new THREE.PMREMGenerator(renderer);
+      const roomEnv = new RoomEnvironment();
+      scene.environment = pmremGenerator.fromScene(roomEnv, 0.04).texture;
+    }
 
     // ============================================
-    // Lighting — tuned for dark car on dark bg
+    // Lighting — tuned for dark car on dark bg.
+    // Mobile gets a lighter rig (fewer lights, no shadows)
+    // since every extra light multiplies per-pixel shading cost.
     // ============================================
     const keyLight = new THREE.DirectionalLight(0xffffff, 3.5);
     keyLight.position.set(30, 50, 30);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 2048;
-    keyLight.shadow.mapSize.height = 2048;
-    keyLight.shadow.camera.near = 0.5;
-    keyLight.shadow.camera.far = 200;
-    keyLight.shadow.camera.left = -60;
-    keyLight.shadow.camera.right = 60;
-    keyLight.shadow.camera.top = 60;
-    keyLight.shadow.camera.bottom = -60;
-    keyLight.shadow.bias = -0.0005;
+    if (!isMobile) {
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 2048;
+      keyLight.shadow.mapSize.height = 2048;
+      keyLight.shadow.camera.near = 0.5;
+      keyLight.shadow.camera.far = 200;
+      keyLight.shadow.camera.left = -60;
+      keyLight.shadow.camera.right = 60;
+      keyLight.shadow.camera.top = 60;
+      keyLight.shadow.camera.bottom = -60;
+      keyLight.shadow.bias = -0.0005;
+    }
     scene.add(keyLight);
 
     const fillLight = new THREE.DirectionalLight(0x88aaff, 1.2);
     fillLight.position.set(-30, 20, -20);
     scene.add(fillLight);
 
-    // Strong rim lights to outline the dark car silhouette
-    const rimLight1 = new THREE.DirectionalLight(0xff8800, 3.0);
-    rimLight1.position.set(0, 15, -50);
-    scene.add(rimLight1);
-
-    const rimLight2 = new THREE.DirectionalLight(0xff4400, 2.5);
-    rimLight2.position.set(-50, 10, 0);
-    scene.add(rimLight2);
-
-    const rimLight3 = new THREE.DirectionalLight(0x00aaff, 2.0);
-    rimLight3.position.set(50, 10, 0);
-    scene.add(rimLight3);
-
-    // Extra rim from top-back for highlight on roof
-    const rimLight4 = new THREE.DirectionalLight(0xffffff, 2.0);
-    rimLight4.position.set(0, 30, -30);
-    scene.add(rimLight4);
-
-    // Spot light from above for studio feel
-    const spot1 = new THREE.SpotLight(0xffffff, 200, 100, Math.PI / 6, 0.5, 2);
-    spot1.position.set(0, 40, 20);
-    spot1.target.position.set(0, 0, 0);
-    scene.add(spot1);
-    scene.add(spot1.target);
-
     const ambient = new THREE.AmbientLight(0x666688, 0.8);
     scene.add(ambient);
 
-    // Hemisphere light for natural sky/ground bounce
-    const hemiLight = new THREE.HemisphereLight(0x8888ff, 0x442200, 0.6);
-    scene.add(hemiLight);
+    if (!isMobile) {
+      // Strong rim lights to outline the dark car silhouette
+      const rimLight1 = new THREE.DirectionalLight(0xff8800, 3.0);
+      rimLight1.position.set(0, 15, -50);
+      scene.add(rimLight1);
+
+      const rimLight2 = new THREE.DirectionalLight(0xff4400, 2.5);
+      rimLight2.position.set(-50, 10, 0);
+      scene.add(rimLight2);
+
+      const rimLight3 = new THREE.DirectionalLight(0x00aaff, 2.0);
+      rimLight3.position.set(50, 10, 0);
+      scene.add(rimLight3);
+
+      // Extra rim from top-back for highlight on roof
+      const rimLight4 = new THREE.DirectionalLight(0xffffff, 2.0);
+      rimLight4.position.set(0, 30, -30);
+      scene.add(rimLight4);
+
+      // Spot light from above for studio feel
+      const spot1 = new THREE.SpotLight(0xffffff, 200, 100, Math.PI / 6, 0.5, 2);
+      spot1.position.set(0, 40, 20);
+      spot1.target.position.set(0, 0, 0);
+      scene.add(spot1);
+      scene.add(spot1.target);
+
+      // Hemisphere light for natural sky/ground bounce
+      const hemiLight = new THREE.HemisphereLight(0x8888ff, 0x442200, 0.6);
+      scene.add(hemiLight);
+    } else {
+      // Mobile: single extra fill light to keep the car readable
+      // without the full 8-light rig.
+      const mobileFill = new THREE.HemisphereLight(0x8888ff, 0x442200, 0.5);
+      scene.add(mobileFill);
+    }
 
     // ============================================
     // Helpers
@@ -224,8 +250,8 @@ export default function BuildingHero3D() {
 
         buildingModel.traverse((child: any) => {
           if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
+            child.castShadow = !isMobile;
+            child.receiveShadow = !isMobile;
             // Force all body/paint materials to deep black
             if (child.material) {
               const mats = Array.isArray(child.material) ? child.material : [child.material];
@@ -543,7 +569,7 @@ export default function BuildingHero3D() {
         mount.removeChild(renderer.domElement);
       }
       renderer.dispose();
-      pmremGenerator.dispose();
+      pmremGenerator?.dispose();
       dracoLoader.dispose();
     };
   }, []);

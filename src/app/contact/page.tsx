@@ -242,14 +242,14 @@ export default function ContactPage() {
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Visit us</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Our Location</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              25B Al Manama Street, Ras Al Khor Industrial Area 2, Dubai, United Arab Emirates
+              {brand.address}, {brand.country}
             </p>
             <div className="flex items-center justify-center gap-2 mt-6 text-sm text-stone">
               <Clock size={16} className="text-gold" />
               <span>{brand.program}</span>
             </div>
             <a
-              href={brand.mapEmbed}
+              href={brand.mapLink}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
@@ -273,7 +273,7 @@ export default function ContactPage() {
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="The Car Dr's Garage Location"
+              title={`${brand.name} Location`}
             />
           </motion.div>
         </div>

@@ -12,7 +12,7 @@ const differentiators = [
   {
     icon: Award,
     title: "Rooted in European Craft",
-    text: "Originating in the UK and established in Dubai in 2013, our deep expertise in European platforms drives technical perfection.",
+    text: `Originating in the UK and established in ${brand.city} in ${brand.founded}, our deep expertise in European platforms drives technical perfection.`,
   },
   {
     icon: Wrench,
@@ -32,7 +32,7 @@ const differentiators = [
 const jobs = [
   {
     title: "Automotive Technician – German Cars",
-    location: "Ras Al Khor, Dubai",
+    location: `${brand.area}, ${brand.city}`,
     type: "Full Time",
     salary: "From 4000 AED + bonus overtime pay",
     hours: "6 days a week, 9am to 6pm",
@@ -41,7 +41,7 @@ const jobs = [
   },
   {
     title: "Service Advisor – German Car Specialist",
-    location: "Ras Al Khor, Dubai",
+    location: `${brand.area}, ${brand.city}`,
     type: "Full Time",
     salary: "From 5000 AED + bonus overtime pay",
     hours: "6 days a week, 9am to 6pm",
@@ -50,7 +50,7 @@ const jobs = [
   },
   {
     title: "Welder / Fabricator – Automotive",
-    location: "Ras Al Khor, Dubai",
+    location: `${brand.area}, ${brand.city}`,
     type: "Full Time",
     salary: "From 4500 AED + bonus overtime pay",
     hours: "6 days a week, 9am to 6pm",
@@ -69,7 +69,7 @@ export default function CareersPage() {
         <div className="absolute inset-0">
           <img
             src="/das/gallery/featured-2.png"
-            alt="The Car Dr's Garage careers"
+            alt={`${brand.name} careers`}
             className="w-full h-full object-cover"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
@@ -89,7 +89,7 @@ export default function CareersPage() {
               Take Part in the <span className="gold-text">Excellence</span>
             </h1>
             <p className="text-lg text-ash leading-relaxed">
-              Joining The Car Dr's Garage means becoming a part of a team united by the ambition to strive for excellence.
+              Joining {brand.name} means becoming a part of a team united by the ambition to strive for excellence.
             </p>
           </motion.div>
         </div>
@@ -108,7 +108,7 @@ export default function CareersPage() {
             className="text-center"
           >
             <p className="text-lg text-ash leading-relaxed">
-              Join a team where engineering-led discipline meets absolute performance. At The Car Dr's Garage, we are always looking for passionate professionals who thrive on technical complexity and share our measured respect for European automotive excellence. Whether you are a master technician or a specialist in workshop operations, we invite you to help us define the future of performance engineering in Dubai.
+              Join a team where engineering-led discipline meets absolute performance. At {brand.name}, we are always looking for passionate professionals who thrive on technical complexity and share our measured respect for European automotive excellence. Whether you are a master technician or a specialist in workshop operations, we invite you to help us define the future of performance engineering in Dubai.
             </p>
           </motion.div>
         </div>
@@ -174,7 +174,7 @@ export default function CareersPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Why Join Us</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">What Sets The Car Dr's Garage Apart?</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">What Sets {brand.name} Apart?</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

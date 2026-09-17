@@ -14,9 +14,9 @@ export default function Footer() {
               <span className="text-[10px] tracking-[0.3em] uppercase text-ash mt-1">{brand.tagline}</span>
             </div>
             <p className="text-sm text-ash leading-relaxed mb-6">
-              An end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.
+              {brand.description}
             </p>
-            <p className="text-xs text-stone">Established 2013 • Dubai, UAE</p>
+            <p className="text-xs text-stone">Established {brand.founded} • {brand.city}, UAE</p>
           </div>
 
           {/* Services */}
@@ -73,7 +73,7 @@ export default function Footer() {
         <div className="hairline h-px w-full mb-8" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-stone">
-            © {new Date().getFullYear()} {brand.name}. All rights reserved.
+            © {new Date().getFullYear()} {brand.company}. All rights reserved.
           </p>
           <p className="text-xs text-stone">{brand.tagline}</p>
         </div>

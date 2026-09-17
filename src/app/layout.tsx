@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { brand } from "@/lib/brand";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Car Dr's Garage | Experience Your Car's Full Potential",
-  description:
-    "The Car Dr's Garage is an end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof. Dubai, UAE.",
+  title: `${brand.name} | ${brand.tagline}`,
+  description: `${brand.description} ${brand.city}, ${brand.country}.`,
   openGraph: {
-    title: "The Car Dr's Garage | Experience Your Car's Full Potential",
-    description:
-      "An end-to-end automotive specialist supporting vehicles through tuning, performing parts, and service maintenance, all under one roof.",
+    title: `${brand.name} | ${brand.tagline}`,
+    description: brand.description,
     locale: "en_US",
     type: "website",
   },
