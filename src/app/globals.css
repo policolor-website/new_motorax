@@ -6,9 +6,9 @@
   --color-surface: #1A1A1A;
   --color-wine: #722F37;
   --color-wine-light: #9B4446;
-  --color-gold: #FF6B00;
-  --color-gold-light: #FF8533;
-  --color-gold-pale: #FFAA66;
+  --color-gold: #E10600;
+  --color-gold-light: #FF3B28;
+  --color-gold-pale: #FF6A5C;
   --color-cream: #F5F5F5;
   --color-bone: #E8E8E8;
   --color-ash: #A0A0A0;
@@ -81,20 +81,20 @@ body {
   background: rgba(26, 26, 26, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 107, 0, 0.15);
+  border: 1px solid rgba(225, 6, 0, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .glass:hover {
-  border-color: rgba(255, 107, 0, 0.35);
-  box-shadow: 0 8px 40px rgba(255, 107, 0, 0.08);
+  border-color: rgba(225, 6, 0, 0.35);
+  box-shadow: 0 8px 40px rgba(225, 6, 0, 0.08);
 }
 
 .glass-light {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 107, 0, 0.2);
+  border: 1px solid rgba(225, 6, 0, 0.2);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 

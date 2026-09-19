@@ -158,10 +158,10 @@ export default function HomePage() {
       {/* ============================================ */}
       {/* HERO — 3D Car animation */}
       {/* ============================================ */}
-      <section ref={heroRef} className="relative h-[600vh] bg-ink">
+      <section ref={heroRef} className="relative h-[600vh] bg-[#1a0407]">
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
           <BuildingHero3D />
-          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-ink/40 via-transparent to-ink/80 pointer-events-none" />
+          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#1a0407]/40 via-transparent to-[#1a0407]/80 pointer-events-none" />
 
           {/* WELCOME — visible at load, fades on scroll */}
           <div
