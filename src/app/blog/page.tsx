@@ -2,60 +2,54 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// BLOG POSTS
+// SFATURI
 // ============================================
-const blogPosts = [
+const posts = [
   {
-    slug: "how-to-choose-a-car-tuning-shop-in-dubai",
-    title: "How to Choose a Car Tuning Shop in Dubai",
-    date: "June 30, 2026",
-    image: "/das/gallery/featured-1.png",
+    title: "Când să schimbi uleiul la motocicletă",
+    date: "Sezon",
+    image: "/motorax/gallery/gallery-2.jpg",
     excerpt:
-      "Choosing the right tuning garage matters for safety, reliability, drivability, and long-term performance. Here is what European performance car owners in Dubai should check before tuning.",
+      "Uleiul este viața motorului. Îți recomandăm schimbarea uleiului și a filtrului cel puțin o dată pe sezon sau conform intervalului din manualul motocicletei tale.",
   },
   {
-    slug: "best-performance-upgrades-for-bmw-m5-f90-owners-in-dubai",
-    title: "Best Performance Upgrades for BMW M5 F90 Owners in Dubai",
-    date: "June 30, 2026",
-    image: "/das/gallery/bmw-1.jpg",
+    title: "Cum îți dai seama că kitul de transmisie e uzat",
+    date: "Transmisie",
+    image: "/motorax/gallery/gallery-3.jpg",
     excerpt:
-      "Own a BMW M5 F90 in Dubai? Learn which upgrades to consider first, from ECU tuning and exhaust systems to cooling, suspension, brakes, and supporting maintenance.",
+      "Lanț întins, pinioane cu dinți uzați, zgomot și smucituri — toate sunt semne că kitul de transmisie trebuie înlocuit. Verifică-l regulat.",
   },
   {
-    slug: "performance-exhaust-systems-dubai-european-cars",
-    title: "What to Know Before Upgrading Your European Car",
-    date: "May 25, 2026",
-    image: "/das/services/exhaust-banner.png",
+    title: "Pregătirea motocicletei pentru iarnă",
+    date: "Hotel Motociclete",
+    image: "/motorax/gallery/gallery-7.jpg",
     excerpt:
-      "Thinking about a performance exhaust upgrade in Dubai? Here is what European performance car owners should consider before choosing an exhaust system, downpipe, cat-back setup, or vehicle-specific upgrade path.",
+      "Depozitarea corectă protejează bateria, cauciucurile și vopseaua. La Hotelul Motociclete ai spațiu privat la 15–20°C, cu contract și îngrijire completă.",
   },
   {
-    slug: "bmw-tuning-dubai-ecu-performance-upgrades",
-    title: "ECU and Performance Upgrade Options for M-Series Owners",
-    date: "May 25, 2026",
-    image: "/das/gallery/bmw-2.jpg",
+    title: "De ce contează sincronizarea carburatoarelor",
+    date: "Motor",
+    image: "/motorax/gallery/gallery-4.jpg",
     excerpt:
-      "Considering BMW tuning in Dubai? Here is what M-Series and European performance car owners should know about ECU tuning, chip tuning, stage 1 tuning, performance parts, and choosing the right tuning shop.",
+      "Ralanti instabil, consum mare sau răspuns slab la accelerație? De multe ori vinovatul este sincronizarea carburatoarelor — o operație simplă cu efect mare.",
   },
   {
-    slug: "ecu-tuning-dubai-european-performance-cars",
-    title: "What European Performance Car Owners Should Know Before Tuning",
-    date: "May 25, 2026",
-    image: "/das/services/engine-tuning-banner.png",
+    title: "Suspensia contează mai mult decât crezi",
+    date: "Suspensii",
+    image: "/motorax/gallery/gallery-5.jpg",
     excerpt:
-      "Considering ECU tuning in Dubai? Here is what European performance car owners should understand before tuning, from remapping and chip tuning to vehicle condition, hardware upgrades, and choosing the right shop.",
+      "Amortizoarele uzate afectează frânarea, stabilitatea și confortul. Un service de suspensii și reglajele potrivite greutății tale fac diferența.",
   },
   {
-    slug: "can-you-daily-drive-a-tuned-car-exploring-the-practicality-and-benefits",
-    title: "Can You Daily Drive a Tuned Car? Exploring the Practicality and Benefits",
-    date: "July 10, 2023",
-    image: "/das/gallery/featured-3.png",
+    title: "De ce un service autorizat R.A.R.",
+    date: "Siguranță",
+    image: "/motorax/gallery/gallery-6.jpg",
     excerpt:
-      "For those who love cars, car tuning is an exciting hobby that gives them the chance to unlock exhilarating performance and push the limits of what a car is capable of.",
+      "Autorizația Registrului Auto Român înseamnă lucrări conforme și documentate — motocicleta ta este pe mâini bune, iar tu ești acoperit.",
   },
 ];
 
@@ -67,7 +61,7 @@ export default function BlogPage() {
       {/* ============================================ */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden bg-ink">
         <div className="absolute inset-0 opacity-25">
-          <img src="/das/gallery/featured-4.png" alt="" className="w-full h-full object-cover" />
+          <img src="/motorax/gallery/gallery-6.jpg" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-canvas" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-canvas" />
@@ -78,56 +72,52 @@ export default function BlogPage() {
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center max-w-3xl"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Insights</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Sfaturi</span>
             <h1 className="font-display text-5xl md:text-7xl font-bold text-cream tracking-tight">
-              Insights
+              Sfaturi pentru motocicliști
             </h1>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================ */}
-      {/* BLOG POSTS GRID */}
+      {/* SFATURI GRID */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post, i) => (
+            {posts.map((post, i) => (
               <motion.div
-                key={post.slug}
+                key={post.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
                 style={{ willChange: "transform, opacity" }}
+                className="glass rounded-2xl overflow-hidden hover:border-gold/30 transition-all duration-500 h-full"
               >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block glass rounded-2xl overflow-hidden hover:border-gold/30 transition-all duration-500 h-full"
-                >
-                  <div className="relative h-48 overflow-hidden bg-ink/50">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gold/20 text-gold backdrop-blur-sm">
-                        {post.date}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col h-full">
-                    <h3 className="font-display text-lg font-bold text-cream mb-3 group-hover:text-gold transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-ash leading-relaxed mb-4 flex-1">{post.excerpt}</p>
-                    <span className="text-gold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Read more <ArrowRight size={14} />
+                <div className="relative h-48 overflow-hidden bg-ink/50">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gold/20 text-gold backdrop-blur-sm">
+                      {post.date}
                     </span>
                   </div>
-                </Link>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-lg font-bold text-cream mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-ash leading-relaxed">{post.excerpt}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -143,30 +133,27 @@ export default function BlogPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-          style={{ willChange: "transform, opacity" }}
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
+            Ai nevoie de <span className="gold-text">service?</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Have a question about tuning, upgrades, or maintenance? Visit our contact page or chat on WhatsApp and we'll get back to you right away.
+            Sună-ne pentru o programare rapidă sau treci pe la service — suntem în {brand.area}, {brand.city}.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
+            <a
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-10 py-5 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300 text-lg"
             >
-              Get in touch! <ArrowRight size={20} />
-            </Link>
-            <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              <Phone size={20} /> {brand.phone}
+            </a>
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2 px-10 py-5 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300 text-lg"
             >
-              Chat on WhatsApp
-            </a>
+              Pagina de contact <ArrowRight size={20} />
+            </Link>
           </div>
         </motion.div>
       </section>

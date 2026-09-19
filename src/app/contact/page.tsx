@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock, ArrowRight, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ArrowRight, Send, Share2 } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 export default function ContactPage() {
@@ -22,7 +22,7 @@ export default function ContactPage() {
       {/* ============================================ */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden bg-ink">
         <div className="absolute inset-0 opacity-30">
-          <img src="/das/contact/contact-img.png" alt="" className="w-full h-full object-cover" />
+          <img src="/motorax/gallery/gallery-5.jpg" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-canvas" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-canvas" />
@@ -35,10 +35,10 @@ export default function ContactPage() {
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Contact</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight">
-              Connect With Our <span className="gold-text">Engineers</span>
+              Contact <span className="gold-text">{brand.name}</span>
             </h1>
             <p className="text-lg text-ash max-w-2xl mx-auto">
-              We're here to help. Let's discuss your best path forward, from hardware and tuning to long-term care for your vehicle.
+              Ai o întrebare sau vrei o programare? Sună-ne sau treci pe la service — suntem în Sector 6, București.
             </p>
           </motion.div>
         </div>
@@ -56,8 +56,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Get in touch</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Contact Information</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Ia legătura</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Date de contact</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -72,20 +72,22 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-5">
                 <Phone size={20} className="text-gold" />
               </div>
-              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Phone</h3>
+              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Telefon</h3>
               <div className="flex flex-col gap-1">
                 <a
-                  href={`tel:${brand.phone.replace(/\s/g, "")}`}
+                  href={brand.phoneLink}
                   className="text-sm text-ash hover:text-gold transition-colors"
                 >
                   {brand.phone}
                 </a>
-                <a
-                  href={`tel:${brand.phone2.replace(/\s/g, "")}`}
-                  className="text-sm text-ash hover:text-gold transition-colors"
-                >
-                  {brand.phone2}
-                </a>
+                {brand.phone2 && (
+                  <a
+                    href={`tel:${brand.phone2.replace(/\s/g, "")}`}
+                    className="text-sm text-ash hover:text-gold transition-colors"
+                  >
+                    {brand.phone2}
+                  </a>
+                )}
               </div>
             </motion.div>
 
@@ -98,15 +100,28 @@ export default function ContactPage() {
               className="glass rounded-2xl p-8 hover:border-gold/20 transition-all duration-500"
             >
               <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-5">
-                <Mail size={20} className="text-gold" />
+                {brand.email ? <Mail size={20} className="text-gold" /> : <Share2 size={20} className="text-gold" />}
               </div>
-              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Email</h3>
-              <a
-                href={`mailto:${brand.email}`}
-                className="text-sm text-ash hover:text-gold transition-colors break-all"
-              >
-                {brand.email}
-              </a>
+              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">
+                {brand.email ? "Email" : "Facebook"}
+              </h3>
+              {brand.email ? (
+                <a
+                  href={`mailto:${brand.email}`}
+                  className="text-sm text-ash hover:text-gold transition-colors break-all"
+                >
+                  {brand.email}
+                </a>
+              ) : (
+                <a
+                  href={brand.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-ash hover:text-gold transition-colors break-all"
+                >
+                  motorax.service.motociclete
+                </a>
+              )}
             </motion.div>
 
             <motion.div
@@ -120,7 +135,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-5">
                 <MapPin size={20} className="text-gold" />
               </div>
-              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Address</h3>
+              <h3 className="font-display text-sm font-bold text-cream mb-2 tracking-wide uppercase">Adresă</h3>
               <p className="text-sm text-ash leading-relaxed">{brand.address}</p>
             </motion.div>
           </div>
@@ -139,9 +154,9 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center mb-12"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Get in Touch</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Scrie-ne</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">
-              We'll take it from <span className="gold-text">here.</span>
+              Ne ocupăm noi <span className="gold-text">de restul.</span>
             </h2>
           </motion.div>
 
@@ -155,15 +170,15 @@ export default function ContactPage() {
               <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-6">
                 <Send size={24} className="text-gold" />
               </div>
-              <h3 className="font-display text-2xl font-bold text-cream mb-3">Message Sent!</h3>
+              <h3 className="font-display text-2xl font-bold text-cream mb-3">Mesaj trimis!</h3>
               <p className="text-ash max-w-md mx-auto">
-                Thank you for reaching out. Our team will get back to you as soon as possible.
+                Îți mulțumim pentru mesaj. Te contactăm în cel mai scurt timp.
               </p>
               <button
                 onClick={() => setSubmitted(false)}
                 className="mt-8 inline-flex items-center gap-2 text-gold hover:gap-3 transition-all text-sm"
               >
-                Send another message <ArrowRight size={14} />
+                Trimite alt mesaj <ArrowRight size={14} />
               </button>
             </motion.div>
           ) : (
@@ -178,12 +193,12 @@ export default function ContactPage() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm text-ash mb-2">Name</label>
+                  <label className="block text-sm text-ash mb-2">Nume</label>
                   <input
                     type="text"
                     required
                     className="w-full bg-ink/50 border border-gold/10 rounded-lg px-4 py-3 text-cream focus:border-gold/40 focus:outline-none transition-colors"
-                    placeholder="Your name"
+                    placeholder="Numele tău"
                   />
                 </div>
                 <div>
@@ -192,43 +207,43 @@ export default function ContactPage() {
                     type="email"
                     required
                     className="w-full bg-ink/50 border border-gold/10 rounded-lg px-4 py-3 text-cream focus:border-gold/40 focus:outline-none transition-colors"
-                    placeholder="you@example.com"
+                    placeholder="adresa@exemplu.ro"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm text-ash mb-2">Phone</label>
+                  <label className="block text-sm text-ash mb-2">Telefon</label>
                   <input
                     type="tel"
                     className="w-full bg-ink/50 border border-gold/10 rounded-lg px-4 py-3 text-cream focus:border-gold/40 focus:outline-none transition-colors"
-                    placeholder="+971 xx xxx xxxx"
+                    placeholder="07xx xxx xxx"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-ash mb-2">Subject</label>
+                  <label className="block text-sm text-ash mb-2">Subiect</label>
                   <input
                     type="text"
                     required
                     className="w-full bg-ink/50 border border-gold/10 rounded-lg px-4 py-3 text-cream focus:border-gold/40 focus:outline-none transition-colors"
-                    placeholder="What can we help with?"
+                    placeholder="Cu ce te putem ajuta?"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm text-ash mb-2">Message</label>
+                <label className="block text-sm text-ash mb-2">Mesaj</label>
                 <textarea
                   required
                   rows={5}
                   className="w-full bg-ink/50 border border-gold/10 rounded-lg px-4 py-3 text-cream focus:border-gold/40 focus:outline-none transition-colors resize-none"
-                  placeholder="Tell us about your vehicle and what you're looking for..."
+                  placeholder="Spune-ne despre motocicleta ta și ce ai nevoie..."
                 />
               </div>
               <button
                 type="submit"
                 className="w-full py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors flex items-center justify-center gap-2"
               >
-                Send Message <Send size={16} />
+                Trimite mesajul <Send size={16} />
               </button>
             </motion.form>
           )}
@@ -247,8 +262,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center mb-12"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Visit us</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Our Location</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Vizitează-ne</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Locația noastră</h2>
             <p className="text-ash max-w-2xl mx-auto">
               {brand.address}, {brand.country}
             </p>
@@ -262,7 +277,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
             >
-              Get Directions <ArrowRight size={18} />
+              Obține direcții <ArrowRight size={18} />
             </a>
           </motion.div>
 
@@ -300,26 +315,26 @@ export default function ContactPage() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
+            Motocicleta ta merită <span className="gold-text">atenție completă</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Have a question about tuning, upgrades, or maintenance? Chat with us on WhatsApp or send a message and we'll get back to you right away.
+            Ai nevoie de o intervenție service sau o revizie? Sună-ne pentru o programare rapidă sau trimite-ne un mesaj.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-10 py-5 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300 text-lg"
             >
-              Chat on WhatsApp <ArrowRight size={20} />
+              <Phone size={20} /> {brand.phone}
             </a>
-            <Link
-              href="/contact"
+            <a
+              href={brand.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-10 py-5 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300 text-lg"
             >
-              Send a message
-            </Link>
+              <Share2 size={20} /> Scrie-ne pe Facebook
+            </a>
           </div>
         </motion.div>
       </section>

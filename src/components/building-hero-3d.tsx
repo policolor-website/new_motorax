@@ -147,13 +147,13 @@ export default function BuildingHero3D() {
       { progress: 0.30, position: [70, 25, 40],  target: [0, 10, 0] },
       { progress: 0.45, position: [40, 30, -50], target: [0, 10, 0] },
       { progress: 0.55, position: [0, 15, 50],   target: [0, 8, 0] },
-      // Tour phase — pass through the car
-      { progress: 0.62, position: [0, 8, 35],    target: [0, 5, 0] },   // approach front
-      { progress: 0.70, position: [0, 5, 15],    target: [0, 3, -10] }, // close to front, looking through
-      { progress: 0.78, position: [0, 4, -5],   target: [0, 3, -20] }, // inside/through the car
-      { progress: 0.85, position: [0, 5, -25],  target: [0, 3, -40] }, // exiting the back
-      { progress: 0.92, position: [20, 8, -40],  target: [0, 5, -30] }, // swing around to side-back
-      { progress: 1.00, position: [0, 20, 60],   target: [0, 8, 0] },  // final hero shot
+      // Reveal phase — slow sweep around the assembled bike.
+      // Camera always stays outside the model (bike spans ~±35 on z,
+      // ~±15 on x); no pass-through / zoom-in.
+      { progress: 0.62, position: [45, 14, 45],  target: [0, 8, 0] },  // drift to 3/4 side
+      { progress: 0.78, position: [68, 16, -5],  target: [0, 8, 0] },  // side profile sweep
+      { progress: 0.90, position: [55, 15, -45], target: [0, 9, -5] }, // swing around toward the front
+      { progress: 1.00, position: [10, 13, -72], target: [0, 9, 0] },  // settle facing the front
     ];
 
     // ============================================
@@ -229,7 +229,7 @@ export default function BuildingHero3D() {
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
     loader.setDRACOLoader(dracoLoader);
-    console.log("%cLoading car.glb (Bugatti CSR2)...", "color: #d4a050;");
+    console.log("%cLoading car.glb (Suzuki GSX 750 Srad)...", "color: #d4a050;");
     loader.load(
       "/car.glb",
       (gltf) => {
@@ -312,6 +312,122 @@ export default function BuildingHero3D() {
                     mat.roughness = 0.15;
                   }
                   mat.envMapIntensity = 2.0;
+                }
+
+                // ============================================
+                // Suzuki GSX 750 Srad — the .blend uses procedural
+                // shaders (noise/voronoi/fresnel) that glTF can't
+                // export. Real colors are encoded in material names
+                // (Matte__AARRGGBB + __spec_/__env_/__trans_ flags);
+                // we rebuild them as PBR + envmap — the "infinite
+                // resolution" procedural look.
+                // ============================================
+                const mname: string = mat.name || "";
+                const hexMatch = mname.match(/^Matte__([0-9A-Fa-f]{8})/);
+                if (hexMatch) {
+                  const packed = parseInt(hexMatch[1], 16);
+                  const alpha = (packed >>> 24) & 0xff;
+                  const isSpec = mname.includes("__spec_") || mname.includes("__env_");
+                  const isTrans = mname.includes("__trans_") || alpha < 0xf0;
+                  const hasEmissive =
+                    mat.emissive &&
+                    mat.emissive.r + mat.emissive.g + mat.emissive.b > 0.05;
+                  if (!hasEmissive) {
+                    mat.color.setHex(packed & 0xffffff);
+                  }
+                  mat.metalness = isSpec ? 0.7 : 0.15;
+                  mat.roughness = isSpec ? 0.25 : 0.6;
+                  if (isTrans) {
+                    mat.transparent = true;
+                    mat.opacity = Math.max(alpha / 255, 0.2);
+                    mat.depthWrite = false;
+                    mat.side = THREE.DoubleSide;
+                    mat.metalness = 0.0;
+                    mat.roughness = 0.08;
+                  }
+                  if (mname.includes("__env_")) {
+                    mat.envMapIntensity = 1.8;
+                  }
+                  if (hasEmissive) {
+                    mat.emissiveIntensity = 2.5;
+                  }
+                }
+                if (mname.startsWith("Car Paint")) {
+                  mat.color.setHex(mname.includes("Red") ? 0x8a0f0f : 0x0a0a0a);
+                  mat.metalness = 0.75;
+                  mat.roughness = 0.28;
+                  mat.envMapIntensity = 1.8;
+                }
+                if (mname === "Roue") {
+                  mat.color.setHex(0x151515);
+                  mat.metalness = 0.85;
+                  mat.roughness = 0.3;
+                  mat.envMapIntensity = 2.0;
+                }
+                if (mname.includes("dourado") || mname.includes("metalpipegold")) {
+                  mat.color.setHex(0xc9a227);
+                  mat.metalness = 1.0;
+                  mat.roughness = 0.22;
+                  mat.envMapIntensity = 2.2;
+                }
+                if (mname.includes("aluminium")) {
+                  mat.color.setHex(0x9a9a9a);
+                  mat.metalness = 0.95;
+                  mat.roughness = 0.3;
+                  mat.envMapIntensity = 1.6;
+                }
+                if (mname === "Motor") {
+                  mat.color.setHex(0x1c1c1c);
+                  mat.metalness = 0.9;
+                  mat.roughness = 0.45;
+                  mat.envMapIntensity = 1.4;
+                }
+                if (mname === "Echape") {
+                  mat.color.setHex(0xb8b8b8);
+                  mat.metalness = 1.0;
+                  mat.roughness = 0.18;
+                  mat.envMapIntensity = 2.2;
+                }
+                if (mname.startsWith("renan")) {
+                  mat.color.setHex(0x0d0d0d);
+                  mat.metalness = 0.4;
+                  mat.roughness = 0.35;
+                  mat.envMapIntensity = 1.2;
+                }
+                if (mname === "Material") {
+                  mat.color.setHex(0x777777);
+                  mat.metalness = 1.0;
+                  mat.roughness = 0.25;
+                  mat.envMapIntensity = 1.8;
+                }
+                if (mname === "Material.001") {
+                  mat.color.setHex(0x111111);
+                  mat.metalness = 0.0;
+                  mat.roughness = 0.75;
+                  mat.envMapIntensity = 0.8;
+                }
+                if (mname === "Material.004") {
+                  mat.color.setHex(0xcccccc);
+                  mat.metalness = 1.0;
+                  mat.roughness = 0.1;
+                  mat.envMapIntensity = 2.0;
+                }
+                if (mname.startsWith("fronts")) {
+                  mat.color.setHex(0x2a2a2a);
+                  mat.metalness = 0.8;
+                  mat.roughness = 0.3;
+                  mat.envMapIntensity = 1.6;
+                }
+                if (mname.startsWith("branco")) {
+                  mat.color.setHex(0xf0f0f0);
+                  mat.metalness = 0.3;
+                  mat.roughness = 0.3;
+                  mat.envMapIntensity = 1.2;
+                }
+                if (mname === "Material.002" || mname === "Material.003") {
+                  mat.emissiveIntensity = 2.5;
+                  mat.metalness = 0.3;
+                  mat.roughness = 0.2;
                 }
               });
             }

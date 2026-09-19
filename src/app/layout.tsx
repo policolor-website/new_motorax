@@ -7,6 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: `${brand.name} | ${brand.tagline}`,
   description: `${brand.description} ${brand.city}, ${brand.country}.`,
+  metadataBase: new URL(`https://${brand.website}`),
   openGraph: {
     title: `${brand.name} | ${brand.tagline}`,
     description: brand.description,
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="ro" className="h-full antialiased">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

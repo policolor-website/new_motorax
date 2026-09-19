@@ -2,65 +2,42 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Wrench, Gauge, Settings, ShieldCheck, Award } from "lucide-react";
+import { ArrowRight, Wrench, ShieldCheck, Award, Bike, Warehouse, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// BRAND CARDS
+// MĂRCI DESERVITE
 // ============================================
 const brandCards = [
-  {
-    name: "BMW",
-    tagline: "BMW Performance Engineering",
-    description:
-      "Enhancing performance in ways that stay true to BMW's sporty DNA while refining response and everyday usability.",
-    link: "/brand-uri/bmw",
-    image: "/das/gallery/bmw-1.jpg",
-  },
-  {
-    name: "Audi",
-    tagline: "Audi Performance Engineering",
-    description:
-      "Performance engineering for Audi vehicles, shaped around confidence and effortless all-wheel-drive composure.",
-    link: "/brand-uri/audi",
-    image: "/das/gallery/audi-1.jpg",
-  },
-  {
-    name: "Mercedes-Benz",
-    tagline: "Mercedes-Benz Performance Engineering",
-    description:
-      "Engineering solutions that enhance Mercedes-Benz capability without compromising its signature luxury feel.",
-    link: "/brand-uri/mercedes-benz",
-    image: "/das/gallery/featured-1.png",
-  },
-  {
-    name: "Volkswagen",
-    tagline: "Volkswagen Performance Engineering",
-    description:
-      "A thoughtful approach to Volkswagen performance focused on smart gains, everyday practicality, and enjoyable driving.",
-    link: "/brand-uri/volkswagen",
-    image: "/das/gallery/featured-2.png",
-  },
+  { name: "Aprilia", slug: "aprilia", logo: "/motorax/brands/aprilia.png" },
+  { name: "BMW", slug: "bmw", logo: "/motorax/brands/bmw.png" },
+  { name: "Harley-Davidson", slug: "harley-davidson", logo: "/motorax/brands/harley.png" },
+  { name: "Honda", slug: "honda", logo: "/motorax/brands/honda.png" },
+  { name: "Kawasaki", slug: "kawasaki", logo: "/motorax/brands/kawa.png" },
+  { name: "KTM", slug: "ktm", logo: "/motorax/brands/ktm.png" },
+  { name: "Suzuki", slug: "suzuki", logo: "/motorax/brands/suzuki.png" },
+  { name: "Triumph", slug: "triumph", logo: "/motorax/brands/triumph.png" },
+  { name: "Yamaha", slug: "yamaha", logo: "/motorax/brands/yamaha.png" },
 ];
 
 // ============================================
-// PILLARS
+// PILARI
 // ============================================
 const pillars = [
   {
     icon: Wrench,
-    title: "Hardware",
-    text: "Purpose-built performance parts chosen for compatibility, balance, and long-term vehicle health.",
+    title: "Reparații",
+    text: "De la ambreiaje și transmisie la mecanică de motor — reparații complete cu piese de calitate.",
   },
   {
-    icon: Gauge,
-    title: "Tuning",
-    text: "Engineering-led calibration focused on controlled power and results that feel rewarding to drive.",
+    icon: Bike,
+    title: "Revizii",
+    text: "Ulei, filtre, bujii, frâne și verificări periodice pentru motociclete, scutere și ATV-uri.",
   },
   {
-    icon: Settings,
-    title: "Maintenance",
-    text: "Routine service and care tailored for performance vehicles and long-term ownership.",
+    icon: Warehouse,
+    title: "Depozitare",
+    text: "Hotel Motociclete — depozitare de iarnă în spațiu privat, la 15–20°C, cu îngrijire completă.",
   },
 ];
 
@@ -82,10 +59,10 @@ export default function BrandsPage() {
               {brand.name}
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight">
-              Expertise Across <span className="gold-text">Leading Brands</span>
+              Deservim majoritatea <span className="gold-text">mărcilor</span>
             </h1>
             <p className="text-lg md:text-xl text-ash leading-relaxed max-w-3xl mx-auto">
-              Trusted service and performance upgrades spanning world-class automotive marques.
+              Service și reparații pentru motociclete, scutere, ATV-uri și biciclete — indiferent de marcă.
             </p>
           </motion.div>
         </div>
@@ -96,38 +73,31 @@ export default function BrandsPage() {
       {/* ============================================ */}
       <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {brandCards.map((b, i) => (
               <motion.div
                 key={b.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
               >
-                <Link href={b.link} className="block group">
+                <Link href={`/brand-uri/${b.slug}`} className="block group">
                   <div className="glass rounded-2xl overflow-hidden h-full hover:border-gold/40 transition-all duration-500">
-                    <div className="relative h-56 bg-ink/40 overflow-hidden">
+                    <div className="relative h-40 bg-ink/40 flex items-center justify-center p-8">
                       <img
-                        src={b.image}
+                        src={b.logo}
                         alt={b.name}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="max-h-16 object-contain invert mix-blend-screen transition-transform duration-700 group-hover:scale-105"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = "none";
                         }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <span className="text-xs tracking-[0.2em] uppercase text-gold mb-1 block">
-                          {b.tagline}
-                        </span>
-                        <h3 className="font-display text-3xl font-bold text-cream">{b.name}</h3>
-                      </div>
                     </div>
                     <div className="p-6">
-                      <p className="text-sm text-ash leading-relaxed mb-5">{b.description}</p>
+                      <h3 className="font-display text-xl font-bold text-cream mb-2">{b.name}</h3>
                       <span className="inline-flex items-center gap-2 text-gold text-sm group-hover:gap-3 transition-all">
-                        Explore {b.name} <ArrowRight size={16} />
+                        Service {b.name} <ArrowRight size={16} />
                       </span>
                     </div>
                   </div>
@@ -139,7 +109,7 @@ export default function BrandsPage() {
       </section>
 
       {/* ============================================ */}
-      {/* WHAT EFFECTIVE CAR TUNING LOOKS LIKE */}
+      {/* EXPERIENȚA NOASTRĂ */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-surface">
         <div className="max-w-4xl mx-auto">
@@ -150,28 +120,24 @@ export default function BrandsPage() {
             transition={{ duration: 0.6 }}
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block text-center">
-              The Standard
+              Standardul nostru
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream mb-8 leading-tight text-center">
-              What Effective Car Tuning <span className="gold-text">Looks Like</span>
+              Același standard, <span className="gold-text">oricare ar fi marca</span>
             </h2>
             <div className="space-y-6 text-lg text-ash leading-relaxed">
               <p>
-                Effective car tuning is not about chasing peak numbers on a spec sheet. It is about
-                delivering measurable, repeatable gains that translate into a car that feels more
-                capable every time you drive it. The right tune respects the engineering already built
-                into the vehicle and works within safe, validated limits.
+                Fie că ai o motocicletă de stradă, un enduro, un scuter sau un ATV, la {brand.name}{" "}
+                primește aceeași atenție. Fiecare job este personal — ne menținem concentrarea și
+                asigurăm servicii de înaltă calitate pentru fiecare vehicul.
               </p>
               <p>
-                That means controlled power delivery, smooth throttle response, consistent behaviour
-                across conditions, and a setup that holds up over time. Whether the goal is a
-                refined Stage 1 upgrade or a more involved hardware build, the outcome should always
-                be a car that is more enjoyable and more confidence-inspiring to drive.
+                Service-ul nostru este autorizat R.A.R., ceea ce înseamnă lucrări conforme,
+                documentate și executate cu piese și consumabile potrivite fiecărui model.
               </p>
               <p>
-                At {brand.name}, every calibration is backed by data, validated on our AWD dyno, and
-                shaped by years of experience across the brands we specialise in. The result is
-                performance you can feel and reliability you can trust.
+                Nu recomandăm reparații inutile. Îți explicăm ce este urgent, ce poate aștepta și
+                cât costă — ca să faci economie și să ai un mecanic de încredere.
               </p>
             </div>
           </motion.div>
@@ -179,48 +145,9 @@ export default function BrandsPage() {
       </section>
 
       {/* ============================================ */}
-      {/* HOW OUR CAR TUNING SHOP DELIVERS IT */}
+      {/* TREI PILARI */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-canvas">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block text-center">
-              The Process
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-cream mb-8 leading-tight text-center">
-              How Our Car Tuning Shop <span className="gold-text">Delivers it</span>
-            </h2>
-            <div className="space-y-6 text-lg text-ash leading-relaxed">
-              <p>
-                Every project starts with understanding the car and the driver. We assess the
-                vehicle's current state, discuss goals and expectations, and recommend the right
-                combination of hardware and calibration for the intended use.
-              </p>
-              <p>
-                From there, work is carried out using brand-specific diagnostics, proven hardware
-                from trusted partners, and calibration developed through dyno validation. Nothing is
-                left to guesswork. Every change is measured, every result is recorded, and every
-                vehicle leaves with a setup that has been properly tested.
-              </p>
-              <p>
-                The same standard applies whether the work is a simple ECU remap, a full hardware
-                build, or routine maintenance on a performance vehicle. One team, one integrated
-                approach, one place to trust with your car.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============================================ */}
-      {/* THREE PILLARS */}
-      {/* ============================================ */}
-      <section className="py-24 px-6 bg-surface">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -230,10 +157,10 @@ export default function BrandsPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Our Approach
+              Abordarea noastră
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">
-              Built on Three <span className="gold-text">Pillars</span>
+              Construit pe trei <span className="gold-text">piloni</span>
             </h2>
           </motion.div>
 
@@ -264,13 +191,13 @@ export default function BrandsPage() {
             className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-stone"
           >
             <span className="flex items-center gap-2">
-              <ShieldCheck size={16} className="text-gold" /> Reliability-First Calibration
+              <ShieldCheck size={16} className="text-gold" /> Autorizat R.A.R.
             </span>
             <span className="flex items-center gap-2">
-              <Award size={16} className="text-gold" /> Trusted Partner Brands
+              <Award size={16} className="text-gold" /> Piese și consumabile de calitate
             </span>
             <span className="flex items-center gap-2">
-              <Gauge size={16} className="text-gold" /> Dyno-Validated Results
+              <Bike size={16} className="text-gold" /> Motoare, scutere, ATV-uri, biciclete
             </span>
           </motion.div>
         </div>
@@ -279,7 +206,7 @@ export default function BrandsPage() {
       {/* ============================================ */}
       {/* CTA */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
+      <section className="py-24 px-6 bg-surface">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -289,32 +216,29 @@ export default function BrandsPage() {
             className="glass rounded-2xl p-10 md:p-16 text-center"
           >
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-              Go from fast to <span className="gold-text">faster</span>
+              Lasă reparațiile <span className="gold-text">în grija noastră</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed mb-10 max-w-2xl mx-auto">
-              Book a session with {brand.name} and experience tuning engineered for real-world
-              performance and long-term reliability.
+              Indiferent de marcă, motocicleta ta este pe mâini bune la {brand.name}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
               >
-                Book Tuning <ArrowRight size={18} />
+                Vreau programare service <ArrowRight size={18} />
               </Link>
               <Link
                 href="/servicii"
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
               >
-                Shop Parts
+                Vezi operațiile
               </Link>
               <a
-                href={brand.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={brand.phoneLink}
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
               >
-                Contact a Technician
+                <Phone size={18} /> {brand.phone}
               </a>
             </div>
           </motion.div>

@@ -7,10 +7,11 @@ import {
   ArrowRight,
   ArrowLeft,
   Gauge,
-  Zap,
   Wrench,
-  TrendingUp,
-  Settings,
+  Droplets,
+  MoveVertical,
+  RefreshCw,
+  Timer,
   ShieldCheck,
   Sparkles,
   Check,
@@ -18,6 +19,7 @@ import {
   Eye,
   Cog,
   BadgeCheck,
+  Phone,
 } from "lucide-react";
 import { brand } from "@/lib/brand";
 
@@ -33,198 +35,248 @@ type ServiceDetail = {
 };
 
 const servicesData: Record<string, ServiceDetail> = {
-  "engine-tuning": {
+  "reparatie-ambreiaje": {
+    icon: Cog,
+    title: "Reparații profesionale ale ambreiajului motocicletei",
+    subtitle:
+      "Diagnoză și reparație completă a ambreiajului — plăci, arcuri, cabluri și reglaje pentru o cuplare lină și sigură.",
+    capabilities: [
+      "Diagnoză completă a ambreiajului",
+      "Înlocuire plăci de fricțiune și arcuri",
+      "Reglare și înlocuire cablu / sistem hidraulic",
+      "Verificare coș de ambreiaj și butuc",
+      "Testare pe drum după reparație",
+    ],
+    features: [
+      {
+        name: "Diagnoză ambreiaj",
+        description:
+          "Identificăm cauza patinării, a punctului de cuplare greșit sau a zgomotelor înainte de orice intervenție.",
+      },
+      {
+        name: "Înlocuire plăci",
+        description:
+          "Montăm plăci de fricțiune și plăci metalice de calitate, potrivite modelului tău de motocicletă.",
+      },
+      {
+        name: "Reglaje și cabluri",
+        description:
+          "Reglăm cursa manetei, înlocuim cablurile uzate și verificăm sistemul hidraulic de acționare.",
+      },
+      {
+        name: "Verificare finală",
+        description:
+          "După reparație testăm cuplarea, treptele de viteză și comportamentul la pornire și în trafic.",
+      },
+    ],
+  },
+  "schimbare-ulei-si-filtru": {
+    icon: Droplets,
+    title: "Schimbare ulei și filtru pentru motocicleta ta",
+    subtitle:
+      "Revizie de bază esențială — uleiul potrivit, filtrul corect și o verificare generală la fiecare intervenție.",
+    capabilities: [
+      "Ulei de motor potrivit specificației producătorului",
+      "Înlocuire filtru de ulei",
+      "Verificare și completare lichide",
+      "Inspecție vizuală lanț, anvelope și frâne",
+      "Resetare martor service unde este cazul",
+    ],
+    features: [
+      {
+        name: "Ulei potrivit",
+        description:
+          "Folosim uleiuri care respectă specificațiile producătorului motocicletei tale, nu orice ulei disponibil.",
+      },
+      {
+        name: "Filtru de ulei",
+        description:
+          "Înlocuim filtrul la fiecare schimb de ulei pentru a proteja motorul de impurități.",
+      },
+      {
+        name: "Verificare generală",
+        description:
+          "La fiecare revizie verificăm vizual lanțul, anvelopele, plăcuțele de frână și nivelele de lichide.",
+      },
+      {
+        name: "Istoric service",
+        description:
+          "Îți spunem clar ce am făcut și ce recomandăm pentru următoarea revizie.",
+      },
+    ],
+  },
+  "service-amortizoare": {
+    icon: MoveVertical,
+    title: "Service amortizoare și suspensii motociclete",
+    subtitle:
+      "Desfacere, curățare, schimb de ulei și reglaje personalizate pentru furcă și amortizorul spate.",
+    capabilities: [
+      "Desfacere și curățare completă a suspensiilor",
+      "Schimb ulei și simeringuri furcă",
+      "Reglaje de precărcare, compresie și revenire",
+      "Setări personalizate pentru greutate și stil de mers",
+      "Verificare articulații și lagăre",
+    ],
+    features: [
+      {
+        name: "Service furcă",
+        description:
+          "Desfacem, curățăm și reumplem furca cu ulei de vâscozitate potrivită, cu simeringuri noi.",
+      },
+      {
+        name: "Service amortizor spate",
+        description:
+          "Verificăm și reconditionăm amortizorul spate pentru o stabilitate corectă.",
+      },
+      {
+        name: "Reglaje personalizate",
+        description:
+          "Ajustăm suspensiile pentru greutatea ta, stilul de condus și tipul de drum pe care mergi.",
+      },
+      {
+        name: "Diagnoză suspensii",
+        description:
+          "Identificăm scurgeri, uzură și reglaje greșite care afectează siguranța și confortul.",
+      },
+    ],
+  },
+  "schimbare-kit-transmisie": {
+    icon: RefreshCw,
+    title: "Schimbare kit transmisie — lanț și pinioane",
+    subtitle:
+      "Înlocuirea completă a kitului de transmisie pentru o motocicletă silențioasă și eficientă.",
+    capabilities: [
+      "Înlocuire lanț, pinion față și pinion spate",
+      "Verificare uzură și aliniere roți",
+      "Reglare și lubrifiere corectă a lanțului",
+      "Curățare și întreținere lanț existent",
+      "Recomandări pentru kituri potrivite",
+    ],
+    features: [
+      {
+        name: "Kit complet",
+        description:
+          "Schimbăm lanțul și ambele pinioane împreună — așa cum este corect pentru durata de viață maximă.",
+      },
+      {
+        name: "Aliniere și tensiune",
+        description:
+          "Reglăm tensiunea lanțului și alinierea roții spate pentru o transmisie lină.",
+      },
+      {
+        name: "Întreținere lanț",
+        description:
+          "Curățăm, reglăm și lubrifiem lanțul existent când înlocuirea nu este încă necesară.",
+      },
+      {
+        name: "Piese de calitate",
+        description:
+          "Recomandăm kituri de transmisie potrivite modelului și stilului tău de mers.",
+      },
+    ],
+  },
+  "sincronizare-carburatoare": {
     icon: Gauge,
-    title: "Engine Tuning for Drivers Chasing Real Power",
+    title: "Sincronizare și reglare carburatoare",
     subtitle:
-      "Data-driven ECU tuning and remapping engineered for measurable power gains and sharper throttle response.",
+      "Echilibrarea carburatoarelor pentru ralanti stabil, răspuns lin și consum corect.",
     capabilities: [
-      "Manufacturer-level ECU diagnostics",
-      "Custom calibration development",
-      "AWD dyno validation",
-      "Thermal and knock safeguards",
-      "Fuel-specific tuning profiles",
+      "Sincronizare vacuum carburatoare multiple",
+      "Reglare ralanti și amestec",
+      "Curățare și verificare carburatoare",
+      "Diagnoză porniri grele și mers neregulat",
+      "Verificare filtre de aer și admisie",
     ],
     features: [
       {
-        name: "ECU Calibration",
+        name: "Sincronizare vacuum",
         description:
-          "Custom ECU tuning optimised for improved power delivery, sharper throttle response, and controlled engine safety margins.",
+          "Echilibrăm depresiunea pe fiecare cilindru pentru funcționare uniformă a motorului.",
       },
       {
-        name: "ECU Remapping",
+        name: "Reglare amestec",
         description:
-          "Factory software recalibrated through car remapping to transform performance while respecting hardware and drivetrain limits.",
+          "Ajustăm amestecul aer-benzină pentru răspuns corect la accelerație și consum normal.",
       },
       {
-        name: "Driveability Optimisation",
+        name: "Curățare carburatoare",
         description:
-          "Refined torque curves for smoother acceleration, predictable response, and confident everyday usability.",
+          "Demontăm și curățăm jicloarele și galeriile când depunerile afectează funcționarea.",
       },
       {
-        name: "Engine Safeguards",
+        name: "Diagnoză completă",
         description:
-          "Built-in protections managing temperatures, fueling, and knock control across all operating conditions.",
+          "Verificăm și cauze conexe — filtru de aer, bujii, furtune — nu doar carburatoarele.",
       },
     ],
   },
-  "dyno-testing": {
-    icon: Zap,
-    title: "Dyno Testing for Measurable Engine Performance",
+  "schimbare-distributie": {
+    icon: Timer,
+    title: "Schimbare distribuție motocicletă",
     subtitle:
-      "Precision dyno test calibration delivering verified power, safe operation, and repeatable results you can trust.",
+      "Înlocuirea lanțului de distribuție și a componentelor asociate, la timp și cu piese de calitate.",
     capabilities: [
-      "AWD Dyno Load Simulation",
-      "Live AFR Monitoring",
-      "Torque Curve Analysis",
-      "Thermal Safety Validation",
-      "Pre and Post Testing",
+      "Înlocuire lanț de distribuție",
+      "Înlocuire patine și întinzătoare",
+      "Reglare supape după intervenție",
+      "Verificare sincronizare axe cu came",
+      "Diagnoză zgomote de distribuție",
     ],
     features: [
       {
-        name: "Dyno Baseline Testing",
+        name: "Lanț de distribuție",
         description:
-          "Establishes accurate horsepower and torque figures before any calibration changes.",
+          "Înlocuim lanțul uzat înainte ca acesta să provoace daune majore motorului.",
       },
       {
-        name: "Engine Dyno Testing",
+        name: "Patine și întinzătoare",
         description:
-          "Measures real-world load, airflow, and thermal behaviour across the rev range.",
+          "Schimbăm și componentele de ghidare care se uzează împreună cu lanțul.",
       },
       {
-        name: "Calibration Validation",
+        name: "Reglare supape",
         description:
-          "Confirms gains, drivability, and safety after tuning adjustments.",
+          "După intervenție verificăm și reglăm jocul supapelor pentru funcționare corectă.",
       },
       {
-        name: "Data Reporting",
+        name: "Piese de încredere",
         description:
-          "Provides clear dyno charts for power, torque, and air-fuel ratios.",
+          "Lucrăm cu componente de calitate — distribuția nu este locul pentru compromisuri.",
       },
     ],
   },
-  "exhaust-brake-upgrades": {
+  "mecanica-motor": {
     icon: Wrench,
-    title: "Exhaust Modification Dubai Drivers Trust for Balance",
+    title: "Operații de mecanică a motorului",
     subtitle:
-      "Precision exhaust tuning and brake upgrades engineered for performance, control, and everyday reliability.",
+      "De la bujii și supape la reparații complexe — garnituri, segmenti, pistoane și teste de compresie.",
     capabilities: [
-      "Exhaust Flow Analysis",
-      "Brake Thermal Management",
-      "Model-Specific Component Matching",
-      "In-House Diagnostics Validation",
-      "AWD Dyno Testing",
+      "Test de compresie și diagnoză motor",
+      "Înlocuire bujii, supape și garnituri",
+      "Reparații segmenti, pistoane și cilindri",
+      "Înlocuire lanț de distribuție",
+      "Verificare sistem de răcire și instalație electrică",
     ],
     features: [
       {
-        name: "Custom Exhaust Systems",
+        name: "Diagnoză motor",
         description:
-          "Bespoke exhaust modifications optimised for flow, sound control, and thermal stability.",
+          "Test de compresie și verificări complete pentru a identifica exact problema motorului.",
       },
       {
-        name: "Exhaust Tuning",
+        name: "Reparații interne",
         description:
-          "Precise exhaust tuning to balance performance gains with drivability and emissions compliance.",
+          "Segmenti, pistoane, supape, garnituri de chiuloasă — intervenții mecanice complete.",
       },
       {
-        name: "Brake Upgrades",
+        name: "Consumabile",
         description:
-          "Tuning brakes for improved stopping power, fade resistance, and pedal consistency.",
+          "Bujii, filtru de aer, lichid de răcire, baterie și becuri — schimbate corect și la timp.",
       },
       {
-        name: "System Integration",
+        name: "Sistem electric",
         description:
-          "Exhaust and brake calibrated to work cohesively under real-world driving loads.",
-      },
-    ],
-  },
-  "turbo-upgrades": {
-    icon: TrendingUp,
-    title: "Turbo Upgrades for Controlled, Reliable Power",
-    subtitle:
-      "Engineered turbo upgrade solutions delivering measurable gains, thermal stability, and everyday drivability you can trust.",
-    capabilities: [
-      "Turbo System Sizing Analysis",
-      "Boost Control Calibration",
-      "Charge Air Thermal Management",
-      "Fueling and Ignition Optimisation",
-      "AWD Dyno Validation",
-    ],
-    features: [
-      {
-        name: "Turbo Selection",
-        description:
-          "Matched turbochargers selected for engine capacity, airflow demand, and safe operating efficiency.",
-      },
-      {
-        name: "Supporting Hardware",
-        description:
-          "Upgraded intercooling, plumbing, fueling, and controls to support stable, repeatable boost delivery.",
-      },
-      {
-        name: "Custom Calibration",
-        description:
-          "Bespoke ECU tuning managing boost, torque, temperatures, and drivability across all operating conditions.",
-      },
-      {
-        name: "Performance Validation",
-        description:
-          "Controlled dyno testing to verify power output, boost behaviour, and engine safety margins.",
-      },
-    ],
-  },
-  "maintenance": {
-    icon: Settings,
-    title: "Car Repair and Maintenance That Feels Right",
-    subtitle:
-      "Thoughtful maintenance and car service Dubai drivers rely on for safer, smoother long-term ownership.",
-    capabilities: [
-      "Manufacturer-Level Diagnostic Scanning",
-      "Preventative Maintenance Protocols",
-      "OEM-Spec Servicing Procedures",
-      "Mechanical Fault Isolation",
-      "Post-Service Validation Checks",
-    ],
-    features: [
-      {
-        name: "Routine Servicing",
-        description:
-          "Scheduled car service aligned with manufacturer intervals and operating conditions.",
-      },
-      {
-        name: "Engine Oil & Filters",
-        description:
-          "Correct-grade oil changes and filter replacements to protect engine health and efficiency.",
-      },
-      {
-        name: "Brake Inspection & Service",
-        description:
-          "Brake system checks covering pads, discs, fluid condition, and braking performance.",
-      },
-      {
-        name: "Tyres & Alignment",
-        description:
-          "Tyre inspection, pressure checks, rotation, and alignment to ensure safety and stability.",
-      },
-      {
-        name: "Air Conditioning Service",
-        description:
-          "Cooling performance checks, gas recharge, and leak detection for consistent cabin comfort.",
-      },
-      {
-        name: "Battery & Electrical Systems",
-        description:
-          "Electrical diagnostics covering batteries, charging systems, sensors, and control modules.",
-      },
-      {
-        name: "Cooling System Maintenance",
-        description:
-          "Inspection of coolant, hoses, and thermal regulation components to prevent overheating.",
-      },
-      {
-        name: "Diagnostic Health Check",
-        description:
-          "Comprehensive vehicle scanning to identify faults before they affect reliability.",
+          "Verificăm instalația electrică, încărcarea bateriei și componentele de aprindere.",
       },
     ],
   },
@@ -236,27 +288,27 @@ const servicesData: Record<string, ServiceDetail> = {
 const protocolSteps = [
   {
     icon: Search,
-    title: "System Diagnostics",
+    title: "Diagnoză",
     description:
-      "Full electronic scanning and data acquisition to understand the vehicle's current state and identify any underlying issues.",
+      "Verificăm motocicleta și identificăm exact problema înainte de a începe orice intervenție.",
   },
   {
     icon: Eye,
-    title: "Physical Inspection",
+    title: "Inspecție fizică",
     description:
-      "Hands-on mechanical inspection of critical components, hardware condition, and system integrity before any work begins.",
+      "Control mecanic al componentelor critice — uzură, scurgeri, reglaje — pentru imaginea completă.",
   },
   {
     icon: Cog,
-    title: "Service & Optimize",
+    title: "Service și reparație",
     description:
-      "Targeted calibration, component replacement, or tuning adjustments performed with precision and platform-specific knowledge.",
+      "Executăm operația cu piese potrivite și unelte adecvate, respectând specificațiile producătorului.",
   },
   {
     icon: BadgeCheck,
-    title: "Quality Assurance",
+    title: "Verificare finală",
     description:
-      "Post-service validation through dyno testing, road verification, and data comparison to confirm results meet our standards.",
+      "Testăm motocicleta după intervenție și îți explicăm clar ce am făcut și ce recomandăm.",
   },
 ];
 
@@ -265,24 +317,24 @@ const protocolSteps = [
 // ============================================
 const faqs = [
   {
-    q: "Is the tune safe for daily driving?",
-    a: "Yes. All our calibrations are engineered for reliability in the UAE and beyond. We optimize power while maintaining safe temperatures, fueling, and drivability for everyday use.",
+    q: "Ce mărci de motociclete deserviți?",
+    a: "Deservim majoritatea mărcilor — Aprilia, BMW, Harley-Davidson, Honda, Kawasaki, KTM, Suzuki, Triumph, Yamaha și altele. Lucrăm și la scutere, ATV-uri și biciclete.",
   },
   {
-    q: "Will tuning affect my vehicle's reliability or warranty?",
-    a: "When performed correctly, performance tuning can maintain reliability by operating within safe limits and accounting for cooling and drivetrain capacity. While any modification may impact warranty coverage, our upgrades are engineered to be seamless, with model-specific guidance.",
+    q: "Sunteți autorizați R.A.R.?",
+    a: "Da. Service-ul nostru are autorizația Registrului Auto Român, ceea ce îți garantează lucrări conforme și documentate.",
   },
   {
-    q: "Do you offer dyno verification?",
-    a: "Absolutely. Every tune can be validated on our AWD dyno, giving you verified horsepower, torque, and AFR readings before and after the calibration.",
+    q: "Am nevoie de programare?",
+    a: "Recomandăm să ne suni înainte la 0728 061 541 pentru o programare rapidă, ca să nu aștepți în service.",
   },
   {
-    q: "Can I still service my car normally after tuning?",
-    a: "Yes. All OEM service routines remain unchanged. We ensure every upgrade is compatible with routine maintenance and long-term reliability.",
+    q: "Oferiți depozitare de iarnă pentru motociclete?",
+    a: "Da. Hotelul nostru de motociclete oferă depozitare în spațiu privat la 15–20°C, cu contract și îngrijire a bateriei, între 1 noiembrie și 28 februarie.",
   },
   {
-    q: "What fuel is required for your tunes?",
-    a: "We recommend high-octane petrol (98 RON or above) for optimal performance and safety. We can also calibrate for specific fuels based on your needs.",
+    q: "Cum știu ce reparații sunt necesare?",
+    a: "Îți recomandăm doar reparațiile de care ai cu adevărat nevoie. După diagnoză îți explicăm ce e urgent, ce poate aștepta și cât costă.",
   },
 ];
 
@@ -295,9 +347,9 @@ export default function ServiceDetailPage() {
     return (
       <main className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-cream mb-4">Service not found</h1>
+          <h1 className="font-display text-3xl text-cream mb-4">Serviciul nu a fost găsit</h1>
           <Link href="/servicii" className="text-gold hover:underline">
-            ← Back to services
+            ← Înapoi la servicii
           </Link>
         </div>
       </main>
@@ -334,15 +386,13 @@ export default function ServiceDetailPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
               >
-                Book Tuning <ArrowRight size={18} />
+                Programează o vizită <ArrowRight size={18} />
               </Link>
               <a
-                href={brand.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={brand.phoneLink}
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300"
               >
-                Contact a Technician
+                <Phone size={18} /> Sună acum
               </a>
             </div>
           </motion.div>
@@ -358,7 +408,7 @@ export default function ServiceDetailPage() {
             href="/servicii"
             className="inline-flex items-center gap-2 text-ash hover:text-gold transition-colors mb-12 text-sm"
           >
-            <ArrowLeft size={16} /> All services
+            <ArrowLeft size={16} /> Toate operațiile
           </Link>
 
           <motion.div
@@ -369,10 +419,10 @@ export default function ServiceDetailPage() {
             style={{ willChange: "transform, opacity" }}
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Capabilities
+              Ce include
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-10 leading-tight">
-              What This Service <span className="gold-text">Includes</span>
+              Ce include <span className="gold-text">această operație</span>
             </h2>
             <div className="space-y-4">
               {service.capabilities.map((cap, i) => (
@@ -408,10 +458,10 @@ export default function ServiceDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Features
+              Detalii
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              Core <span className="gold-text">Features</span>
+              În detaliu, <span className="gold-text">pas cu pas</span>
             </h2>
           </motion.div>
 
@@ -456,10 +506,10 @@ export default function ServiceDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              How We Work
+              Cum lucrăm
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              Service <span className="gold-text">Protocol</span>
+              Protocolul nostru <span className="gold-text">de service</span>
             </h2>
           </motion.div>
 
@@ -508,7 +558,7 @@ export default function ServiceDetailPage() {
               FAQ
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              Frequently Asked <span className="gold-text">Questions</span>
+              Întrebări <span className="gold-text">frecvente</span>
             </h2>
           </motion.div>
 
@@ -553,25 +603,23 @@ export default function ServiceDetailPage() {
             <Sparkles size={20} className="text-gold" />
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Ready to get <span className="gold-text">started?</span>
+            Lasă reparațiile <span className="gold-text">în grija noastră</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Book a session with {brand.name} and let our team deliver results you can feel.
+            Programează o vizită la {brand.name} — service autorizat R.A.R. pentru motocicleta ta.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
             >
-              Book Tuning <ArrowRight size={18} />
+              Vreau programare service <ArrowRight size={18} />
             </Link>
             <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300"
             >
-              Contact a Technician
+              <Phone size={18} /> {brand.phone}
             </a>
           </div>
         </motion.div>

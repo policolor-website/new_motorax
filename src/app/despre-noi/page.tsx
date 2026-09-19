@@ -2,29 +2,29 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Brain, Wrench, ShieldCheck, Repeat, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles, Wrench, ShieldCheck, TrendingUp, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 const principles = [
   {
-    icon: Brain,
-    title: "Expertise",
-    text: "Every decision is guided by technical understanding and measured outcomes.",
-  },
-  {
-    icon: Wrench,
-    title: "Craftsmanship",
-    text: "Every upgrade is measured, refined, and executed with precision.",
+    icon: Sparkles,
+    title: "Fiecare job este personal",
+    text: "Pentru că avem o mică echipă, fiecare job este personal și primește atenția cuvenită.",
   },
   {
     icon: ShieldCheck,
-    title: "Integrity",
-    text: "Work is carried out transparently, with respect and restraint for the vehicle.",
+    title: "Autorizație R.A.R.",
+    text: "Service autorizat de Registrul Auto Român — lucrări conforme și documentate.",
   },
   {
-    icon: Repeat,
-    title: "Consistency",
-    text: "The same standards apply across every brand, platform, and project.",
+    icon: TrendingUp,
+    title: "Faci economie",
+    text: "Îți recomandăm doar reparațiile de care ai cu adevărat nevoie, la prețuri corecte.",
+  },
+  {
+    icon: Wrench,
+    title: "Meșteșug",
+    text: "Fiecare intervenție este executată cu grijă, precizie și uneltele potrivite.",
   },
 ];
 
@@ -36,7 +36,7 @@ export default function AboutPage() {
       {/* ============================================ */}
       <section className="relative py-32 px-6 bg-ink overflow-hidden">
         <div className="absolute inset-0 opacity-25">
-          <img src="/das/gallery/featured-1.png" alt="" className="w-full h-full object-cover" />
+          <img src="/motorax/gallery/gallery-6.jpg" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-canvas/50 to-ink pointer-events-none" />
@@ -47,12 +47,12 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-6 block">About {brand.name}</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-6 block">Despre {brand.name}</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-8 leading-tight">
-              Discover the <span className="gold-text">{brand.name}</span> Difference
+              Din pasiune <span className="gold-text">pentru motociclete</span>
             </h1>
             <p className="text-lg md:text-xl text-ash leading-relaxed max-w-3xl mx-auto">
-              Where engineering, care for the driver experience, and respect for the vehicle come together to shape a more considered approach to performance.
+              Unde experiența, grija pentru motociclist și respectul pentru fiecare mașină se întâlnesc într-un service autorizat R.A.R.
             </p>
           </motion.div>
         </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
             style={{ willChange: "transform, opacity" }}
           >
             <p className="text-lg md:text-xl text-ash leading-relaxed">
-              {brand.name} is a performance-focused automotive specialist delivering all-in-one tuning, hardware upgrades, and specialist servicing for luxury and sports vehicles. Our work is rooted in deep experience with European platforms, and our approach blends technical discipline with a measured respect for each vehicle's character and the principles that define its design.
+              {brand.name} este un service de motociclete autorizat R.A.R. din {brand.city}, care oferă reparații, revizii și mentenanță pentru motociclete, scutere, ATV-uri și biciclete. Credem că motocicleta ta merită atenție completă și cunoștințe solide — de aceea îți recomandăm doar reparațiile de care ai cu adevărat nevoie.
             </p>
           </motion.div>
         </div>
@@ -90,12 +90,12 @@ export default function AboutPage() {
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
               style={{ willChange: "transform, opacity" }}
             >
-              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Our Origins</span>
+              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Povestea noastră</span>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-                Built on <span className="gold-text">European Craft</span>
+                Un service din <span className="gold-text">{brand.city}</span>
               </h2>
               <p className="text-lg text-ash leading-relaxed">
-                We began our journey in the United Kingdom, with specialist work on Fiat and Lancia platforms. In {brand.founded}, our expertise led us to {brand.city}, where {brand.name} was established. We've been a performance workshop working on European and other premium platforms ever since, with a focus on thoughtful engineering and careful execution, leading to powerful results.
+                Service-ul {brand.name} a luat naștere din pasiune pentru motociclete și pentru munca bine făcută. Suntem un atelier din {brand.area}, {brand.city}, unde fiecare motocicletă este tratată cu atenție — de la revizii simple la operații complexe de mecanică a motorului.
               </p>
             </motion.div>
 
@@ -109,28 +109,28 @@ export default function AboutPage() {
             >
               <div className="rounded-2xl overflow-hidden glass">
                 <img
-                  src="/das/gallery/featured-2.png"
-                  alt={`${brand.name} Workshop`}
+                  src="/motorax/gallery/gallery-3.jpg"
+                  alt={`${brand.name} Atelier`}
                   className="w-full h-[400px] object-cover"
                 />
               </div>
               <div className="glass rounded-2xl p-6 mt-4">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center">
-                    <span className="font-display text-2xl font-bold gold-text">{brand.founded}</span>
+                    <ShieldCheck size={24} className="text-gold" />
                   </div>
                   <div>
-                    <p className="font-display text-lg font-bold text-cream">Established in {brand.city}</p>
-                    <p className="text-sm text-stone">{brand.area}</p>
+                    <p className="font-display text-lg font-bold text-cream">Autorizat R.A.R.</p>
+                    <p className="text-sm text-stone">{brand.area}, {brand.city}</p>
                   </div>
                 </div>
                 <div className="h-px hairline mb-6" />
                 <ul className="space-y-4">
                   {[
-                    "Rooted in UK specialist work on Fiat & Lancia",
-                    "European platform expertise since the beginning",
-                    "Premium and sports vehicle focus",
-                    "Thoughtful engineering, careful execution",
+                    "Motociclete, scutere, ATV-uri și biciclete",
+                    "Autorizație Registrul Auto Român",
+                    "Echipă mică, atenție la detalii",
+                    "Hotel motociclete pentru depozitare de iarnă",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm text-ash">
                       <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
@@ -156,27 +156,17 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
               style={{ willChange: "transform, opacity" }}
-              className="glass rounded-2xl p-10 order-2 lg:order-1"
+              className="glass rounded-2xl p-10 order-2 lg:order-1 flex flex-col items-center justify-center text-center"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
-                  <ShieldCheck size={22} className="text-gold" />
-                </div>
-                <div>
-                  <p className="font-display text-lg font-bold text-cream">Ilyas Sheikh</p>
-                  <p className="text-xs text-stone tracking-wide uppercase">Co-Owner / Operator</p>
-                </div>
-              </div>
-              <div className="h-px hairline mb-6" />
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
-                  <Wrench size={22} className="text-gold" />
-                </div>
-                <div>
-                  <p className="font-display text-lg font-bold text-cream">Baber Sheikh</p>
-                  <p className="text-xs text-stone tracking-wide uppercase">Co-Owner / Operator</p>
-                </div>
-              </div>
+              <img
+                src="/autorizat-rar.png"
+                alt={`${brand.name} — autorizat R.A.R.`}
+                className="h-20 object-contain mb-6"
+              />
+              <p className="font-display text-lg font-bold text-cream mb-2">Autorizație R.A.R.</p>
+              <p className="text-sm text-ash leading-relaxed">
+                Service-ul nostru este autorizat de Registrul Auto Român — garanția unor lucrări conforme și documentate.
+              </p>
             </motion.div>
 
             <motion.div
@@ -187,12 +177,12 @@ export default function AboutPage() {
               style={{ willChange: "transform, opacity" }}
               className="order-1 lg:order-2"
             >
-              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Leadership</span>
+              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Încredere</span>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-                Led with <span className="gold-text">Technical Accountability</span>
+                Pe mâini <span className="gold-text">bune</span>
               </h2>
               <p className="text-lg text-ash leading-relaxed">
-                Owned and operated by Ilyas Sheikh and Baber Sheikh, {brand.name} is led with direct oversight and a hands-on approach. The culture is practical, detail-driven, and engineering-led, with a focus on doing things properly rather than quickly. Every project reflects a mindset shaped by experience, not trends.
+                {brand.name} este condus direct de mecanici pasionați, cu o abordare practică și atenție la detalii. Fiecare motocicletă este tratată ca și cum ar fi a noastră — preferăm să facem lucrurile corect, nu repede.
               </p>
             </motion.div>
           </div>
@@ -212,9 +202,9 @@ export default function AboutPage() {
             style={{ willChange: "transform, opacity" }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">What Guides Us</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Ce ne ghidează</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">
-              Four <span className="gold-text">Principles</span>
+              Patru <span className="gold-text">principii</span>
             </h2>
           </motion.div>
 
@@ -255,12 +245,12 @@ export default function AboutPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Today & Beyond</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Astăzi și mai departe</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-              A Complete <span className="gold-text">Performance Engineering Partner</span>
+              Service-ul tău de încredere <span className="gold-text">din București</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed">
-              Today, {brand.name} operates as a complete performance engineering partner, supporting vehicles through tuning, upgrades, and long-term maintenance care. Our focus remains unchanged: data-led engineering and proven processes that earn the confidence of drivers who demand the best from their machines.
+              Astăzi, {brand.name} deservește motocicliști din tot Bucureștiul — cu reparații, revizii, reglaje de suspensie și depozitare de iarnă în Hotelul Motociclete. Concentrarea noastră rămâne aceeași: muncă bine făcută și recomandări oneste.
             </p>
           </motion.div>
         </div>
@@ -279,25 +269,23 @@ export default function AboutPage() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
+            Lasă reparațiile <span className="gold-text">în grija noastră</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Ready to experience the difference? Get in touch with our team today.
+            Vrei să cunoști echipa? Sună-ne sau treci pe la service.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300 text-lg"
             >
-              Get in touch! <ArrowRight size={18} />
+              Contactează-ne <ArrowRight size={18} />
             </Link>
             <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300 text-lg"
             >
-              <MessageCircle size={18} /> Chat on WhatsApp
+              <Phone size={18} /> {brand.phone}
             </a>
           </div>
         </motion.div>

@@ -5,16 +5,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
-  Gauge,
   Wrench,
-  Settings,
   ShieldCheck,
-  Award,
   ArrowRight,
   Star,
   Quote,
   Check,
   ChevronDown,
+  Droplets,
+  MoveVertical,
+  RefreshCw,
+  Phone,
 } from "lucide-react";
 import { brand } from "@/lib/brand";
 
@@ -23,197 +24,122 @@ import { brand } from "@/lib/brand";
 // ============================================
 type BrandData = {
   name: string;
+  logo: string;
   title: string;
   subtitle: string;
-  capabilities: string[];
-  dyno: {
-    stage: string;
-    model: string;
-    stockPower: string;
-    stockTorque: string;
-    tunedPower: string;
-    tunedTorque: string;
-  };
-  testimonials: { name: string; model: string; text: string }[];
-  gallery: string[];
 };
 
 const brandsData: Record<string, BrandData> = {
-  audi: {
-    name: "Audi",
-    title: "Audi Service Center Dubai, Engineered for Performance",
+  aprilia: {
+    name: "Aprilia",
+    logo: "/motorax/brands/aprilia.png",
+    title: "Service și reparații pentru motociclete Aprilia",
     subtitle:
-      "Expert Audi servicing, performance tuning, and upgrades delivered by a specialised Audi service center Dubai drivers trust.",
-    capabilities: [
-      "Audi ECU calibration expertise",
-      "Brand-specific diagnostics systems",
-      "Performance hardware integration",
-      "Thermal and drivetrain optimisation",
-      "Dyno-validated tuning processes",
-    ],
-    dyno: {
-      stage: "Stage 1",
-      model: "AUDI RS3 8Y",
-      stockPower: "400 BHP",
-      stockTorque: "500 NM",
-      tunedPower: "450 BHP",
-      tunedTorque: "580 NM",
-    },
-    testimonials: [
-      {
-        name: "Alan Labussiere",
-        model: "Audi S3",
-        text: "I came to do some modifications and repairs on my Audi S3 and everything went really well. The team handled everything professionally. Highly recommend their trustworthy service.",
-      },
-      {
-        name: "Ribal Talal",
-        model: "Audi RS7",
-        text: "Highly underrated tuning shop in Dubai. Virtually anything is possible with them. Very reasonable pricing considering the quality and the speed of the service provided.",
-      },
-    ],
-    gallery: Array.from({ length: 7 }, (_, i) => `/das/gallery/audi-${i + 1}.jpg`),
+      "De la RSV4 și Tuono la modelele mai mici — revizii, reparații și reglaje pentru motocicletele tale Aprilia.",
   },
   bmw: {
-    name: "BMW",
-    title: "BMW Service Center for Total Performance Engineering",
+    name: "BMW Motorrad",
+    logo: "/motorax/brands/bmw.png",
+    title: "Service și reparații pentru motociclete BMW",
     subtitle:
-      "Precision BMW tuning in Dubai, with expert performance upgrades and servicing, delivered by specialists who understand BMW engineering deeply.",
-    capabilities: [
-      "BMW ECU calibration expertise",
-      "Advanced BMW diagnostics systems",
-      "OEM+ performance hardware integration",
-      "Cooling and drivetrain optimization",
-      "AWD dyno performance validation",
-    ],
-    dyno: {
-      stage: "Stage 2",
-      model: "G87 BMW M2",
-      stockPower: "453 BHP",
-      stockTorque: "550 NM",
-      tunedPower: "680 BHP",
-      tunedTorque: "900 NM",
-    },
-    testimonials: [
-      {
-        name: "BMW Client",
-        model: "BMW M2",
-        text: "The level of detail and care that went into my M2 build was outstanding. The team understood exactly what I wanted and delivered beyond expectations. The car feels completely transformed.",
-      },
-      {
-        name: "BMW Client",
-        model: "BMW M3",
-        text: "Professional, knowledgeable, and honest. They took the time to explain every step of the process and the dyno results spoke for themselves. Highly recommend for any BMW owner in Dubai.",
-      },
-    ],
-    gallery: Array.from({ length: 3 }, (_, i) => `/das/gallery/bmw-${i + 1}.jpg`),
+      "Mentenanță și reparații pentru gama BMW Motorrad — de la GS la modelele sport și de stradă.",
   },
-  "mercedes-benz": {
-    name: "Mercedes-Benz",
-    title: "Mercedes Benz Service Center, Focused on Driving Excellence",
+  "harley-davidson": {
+    name: "Harley-Davidson",
+    logo: "/motorax/brands/harley.png",
+    title: "Service și reparații pentru motociclete Harley-Davidson",
     subtitle:
-      "Specialist Mercedes-Benz service center delivering precision tuning, upgrades, and expert maintenance built for long-term performance.",
-    capabilities: [
-      "Mercedes ECU calibration expertise",
-      "Brand-specific diagnostics systems",
-      "OEM+ performance hardware integration",
-      "Thermal and drivability optimisation",
-      "AWD dyno performance validation",
-    ],
-    dyno: {
-      stage: "Stage 1",
-      model: "Mercedes E63 AMG",
-      stockPower: "603 BHP",
-      stockTorque: "850 NM",
-      tunedPower: "720 BHP",
-      tunedTorque: "1,000 NM",
-    },
-    testimonials: [
-      {
-        name: "David Whitelaw",
-        model: "Mercedes-AMG C63 S",
-        text: "Great team of guys who are very knowledgeable. Great service and very reliable. Highly recommend them to anyone driving a European car.",
-      },
-      {
-        name: "Oz Sheikh",
-        model: "Mercedes-Benz E-Class",
-        text: "Excellent service here! Very professional advice given on the issue I was having with my car. Highly recommend this place to anyone.",
-      },
-    ],
-    gallery: [
-      "/das/gallery/mercedes-1.jpg",
-      "/das/gallery/mercedes-2.jpg",
-      "/das/gallery/mercedes-3.jpg",
-    ],
+      "Îngrijire și reparații pentru Harley-uri — de la revizii periodice la operații mecanice complexe.",
   },
-  volkswagen: {
-    name: "Volkswagen",
-    title: "Volkswagen Service Center, Engineered the Right Way",
+  honda: {
+    name: "Honda",
+    logo: "/motorax/brands/honda.png",
+    title: "Service și reparații pentru motociclete Honda",
     subtitle:
-      "Specialist Volkswagen service center delivering tuning, repairs, and upgrades built for performance, safety, and long-term reliability.",
-    capabilities: [
-      "Volkswagen ECU calibration expertise",
-      "Advanced Volkswagen diagnostics",
-      "Performance hardware installation",
-      "OEM-compliant servicing standards",
-      "Data-driven testing validation",
-    ],
-    dyno: {
-      stage: "Stage 2",
-      model: "MK8 Volkswagen GTI",
-      stockPower: "245 BHP",
-      stockTorque: "370 NM",
-      tunedPower: "330 BHP",
-      tunedTorque: "475 NM",
-    },
-    testimonials: [
-      {
-        name: "Alexandre Poussardin",
-        model: "VW Golf R",
-        text: "Brought my Golf R in to fix a boost leak and get a remap. I'm more than happy with what I got in return, feels as if I'm driving a different car in itself.",
-      },
-      {
-        name: "Harry Politis",
-        model: "VW Golf GTI",
-        text: "Amazingly priced considering how professional and experienced these guys are. Been with them exclusively for all maintenance and performance related stuff for my golf for over 3 years.",
-      },
-    ],
-    gallery: [
-      "/das/gallery/volkswagen-1.jpg",
-      "/das/gallery/volkswagen-2.png",
-      "/das/gallery/volkswagen-3.png",
-      "/das/gallery/volkswagen-4.png",
-    ],
+      "Revizii, reparații și mentenanță pentru motocicletele și scuterele Honda — fiabilitate menținută corect.",
+  },
+  kawasaki: {
+    name: "Kawasaki",
+    logo: "/motorax/brands/kawa.png",
+    title: "Service și reparații pentru motociclete Kawasaki",
+    subtitle:
+      "De la Ninja la modelele naked și adventure — service complet pentru motocicleta ta Kawasaki.",
+  },
+  ktm: {
+    name: "KTM",
+    logo: "/motorax/brands/ktm.png",
+    title: "Service și reparații pentru motociclete KTM",
+    subtitle:
+      "Enduro, adventure sau stradă — reparații și mentenanță pentru motocicletele KTM.",
+  },
+  suzuki: {
+    name: "Suzuki",
+    logo: "/motorax/brands/suzuki.png",
+    title: "Service și reparații pentru motociclete Suzuki",
+    subtitle:
+      "GSX-R, V-Strom sau modele clasice — service autorizat R.A.R. pentru motocicleta ta Suzuki.",
+  },
+  triumph: {
+    name: "Triumph",
+    logo: "/motorax/brands/triumph.png",
+    title: "Service și reparații pentru motociclete Triumph",
+    subtitle:
+      "Bonneville, Tiger, Street Triple — îngrijire atentă pentru motocicletele britanice.",
+  },
+  yamaha: {
+    name: "Yamaha",
+    logo: "/motorax/brands/yamaha.png",
+    title: "Service și reparații pentru motociclete Yamaha",
+    subtitle:
+      "De la R1 la MT și TMAX — revizii și reparații pentru motocicletele și scuterele Yamaha.",
   },
 };
 
 // ============================================
-// PILLARS
+// OPERAȚII FRECVENTE
 // ============================================
-const pillars = [
+const operations = [
+  { icon: Droplets, title: "Schimbare ulei și filtru", link: "/servicii/schimbare-ulei-si-filtru" },
+  { icon: MoveVertical, title: "Service amortizoare", link: "/servicii/service-amortizoare" },
+  { icon: RefreshCw, title: "Schimbare kit transmisie", link: "/servicii/schimbare-kit-transmisie" },
+  { icon: Wrench, title: "Mecanică motor", link: "/servicii/mecanica-motor" },
+];
+
+// ============================================
+// CE INCLUDE
+// ============================================
+const capabilities = [
+  "Diagnoză și inspecție completă",
+  "Revizii și mentenanță periodică",
+  "Reparații ambreiaj și kit transmisie",
+  "Service amortizoare și reglaje suspensii",
+  "Operații de mecanică a motorului",
+];
+
+// ============================================
+// TESTIMONIALE
+// ============================================
+const testimonials = [
   {
-    icon: Wrench,
-    title: "Hardware Upgrades",
-    text: "Purpose-built performance parts chosen for compatibility, balance, and long-term vehicle health.",
+    name: "Cristi",
+    model: "Client service",
+    text: "Super profesioniști! Au reușit să repare și să facă să funcționeze perfect și super bine. Recomand cu căldură!",
   },
   {
-    icon: Gauge,
-    title: "Performance Tuning",
-    text: "Engineering-led calibration focused on controlled power and results that feel rewarding to drive.",
-  },
-  {
-    icon: Settings,
-    title: "Vehicle Maintenance",
-    text: "Routine service and care tailored for performance vehicles and long-term ownership.",
+    name: "Costel",
+    model: "Client service",
+    text: "Totul este atât de profesional încât nu îmi pot imagina să merg cu motocicleta în altă parte. Acesta este locul!",
   },
 ];
 
 // ============================================
-// PARTNER LOGOS
+// GALLERY
 // ============================================
-const partnerLogos = [
-  { name: "Akrapovic", logo: "/das/logos/akrapovic-2025.png" },
-  { name: "CSF", logo: "/das/logos/csf-2025.png" },
-  { name: "Eventuri", logo: "/das/logos/eventuri-2025.png" },
+const galleryImages = [
+  "/motorax/gallery/gallery-2.jpg",
+  "/motorax/gallery/gallery-3.jpg",
+  "/motorax/gallery/gallery-4.jpg",
+  "/motorax/gallery/gallery-5.jpg",
 ];
 
 // ============================================
@@ -221,28 +147,24 @@ const partnerLogos = [
 // ============================================
 const generateFaqs = (brandName: string) => [
   {
-    q: "Is the tune safe for daily driving?",
-    a: "Yes. All our calibrations are engineered for reliability in the UAE and beyond. We operate within safe limits validated on our dyno, so your car remains dependable for everyday use while delivering the performance gains you expect.",
+    q: `Lucrați la motociclete ${brandName}?`,
+    a: `Da. Deservim majoritatea mărcilor, inclusiv ${brandName} — de la revizii simple la reparații complexe de motor, ambreiaj și suspensii.`,
   },
   {
-    q: `Will tuning affect ${brandName} reliability or warranty?`,
-    a: `When performed correctly, ${brandName} tuning can maintain reliability by operating within safe limits. Our approach is conservative and data-driven, prioritising long-term engine health. We recommend discussing warranty considerations with our team before proceeding.`,
+    q: "Sunteți autorizați R.A.R.?",
+    a: "Da. Service-ul nostru are autorizația Registrului Auto Român, deci toate lucrările sunt conforme și documentate.",
   },
   {
-    q: `Is ${brand.name} a ${brandName} service center?`,
-    a: `Yes. ${brand.name} operates as a specialized ${brandName} service center, offering expert servicing, diagnostics, and performance upgrades carried out by technicians who understand ${brandName} engineering in depth.`,
+    q: "Folosiți piese originale?",
+    a: "Lucrăm cu piese și consumabile de calitate, potrivite modelului tău. Îți spunem de fiecare dată ce montăm și de ce.",
   },
   {
-    q: `Can I service and tune my ${brandName} together?`,
-    a: "Yes. Many clients combine servicing and tuning in one visit. This is often the most efficient approach, as we can ensure the vehicle is in optimal condition before calibration and validate everything together on the dyno.",
+    q: "Am nevoie de programare?",
+    a: `Recomandăm să ne suni înainte la ${brand.phone} pentru o programare rapidă, ca să nu aștepți în service.`,
   },
   {
-    q: "What fuel is required for your tunes?",
-    a: "We recommend high-octane petrol, 98 RON or above, for all our performance calibrations. This ensures the engine runs safely at the tuned parameters and delivers consistent results in UAE conditions.",
-  },
-  {
-    q: "Do you offer dyno verification?",
-    a: "Absolutely. Every tune can be verified on our AWD dyno. We record before and after figures so you can see exactly what the calibration delivers, with real numbers rather than estimates.",
+    q: "Pot lăsa motocicleta la voi peste iarnă?",
+    a: "Da. Hotelul nostru de motociclete oferă depozitare în spațiu privat la 15–20°C, cu contract și îngrijire a bateriei, între 1 noiembrie și 28 februarie.",
   },
 ];
 
@@ -293,9 +215,9 @@ export default function BrandDetailPage() {
     return (
       <main className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-cream mb-4">Brand not found</h1>
+          <h1 className="font-display text-3xl text-cream mb-4">Marca nu a fost găsită</h1>
           <Link href="/brand-uri" className="text-gold hover:underline">
-            ← Back to brands
+            ← Înapoi la mărci
           </Link>
         </div>
       </main>
@@ -317,15 +239,17 @@ export default function BrandDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              {brand.name} · Specialist Service Center
-            </span>
-            <h1 className="font-display text-5xl md:text-7xl font-bold text-cream mb-6 leading-tight">
-              {data.name}
-            </h1>
-            <h2 className="font-display text-xl md:text-2xl font-medium text-cream/90 mb-6 max-w-3xl mx-auto leading-snug">
+            <img
+              src={data.logo}
+              alt={data.name}
+              className="h-14 md:h-16 object-contain mx-auto mb-8 invert mix-blend-screen"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = "none";
+              }}
+            />
+            <h1 className="font-display text-3xl md:text-5xl font-bold text-cream mb-6 leading-tight">
               {data.title}
-            </h2>
+            </h1>
             <p className="text-lg text-ash leading-relaxed max-w-3xl mx-auto mb-10">
               {data.subtitle}
             </p>
@@ -334,21 +258,21 @@ export default function BrandDetailPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
               >
-                Book Tuning <ArrowRight size={18} />
+                Vreau programare service <ArrowRight size={18} />
               </Link>
-              <Link
-                href="/servicii"
+              <a
+                href={brand.phoneLink}
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
               >
-                Shop Parts
-              </Link>
+                <Phone size={18} /> {brand.phone}
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================ */}
-      {/* DECADES OF EXPERIENCE — CAPABILITIES + PILLARS */}
+      {/* CAPABILITIES + OPERAȚII */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
@@ -360,10 +284,10 @@ export default function BrandDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              {data.name} Expertise
+              Service {data.name}
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream leading-tight">
-              Decades of Experience. <span className="gold-text">Engineered for Results.</span>
+              Experiență. <span className="gold-text">Rezultate reale.</span>
             </h2>
           </motion.div>
 
@@ -376,10 +300,10 @@ export default function BrandDetailPage() {
               transition={{ duration: 0.6 }}
             >
               <h3 className="font-display text-2xl font-bold text-cream mb-8">
-                {data.name} Capabilities
+                Ce facem pentru {data.name}-ul tău
               </h3>
               <div className="space-y-4">
-                {data.capabilities.map((cap, i) => (
+                {capabilities.map((cap, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
@@ -397,7 +321,7 @@ export default function BrandDetailPage() {
               </div>
             </motion.div>
 
-            {/* Pillars */}
+            {/* Operații */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -405,21 +329,24 @@ export default function BrandDetailPage() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              {pillars.map((p, i) => (
-                <div
+              {operations.map((op, i) => (
+                <Link
                   key={i}
-                  className="glass rounded-2xl p-6 hover:border-gold/30 transition-all duration-500"
+                  href={op.link}
+                  className="block glass rounded-2xl p-6 hover:border-gold/30 transition-all duration-500"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
-                      <p.icon size={24} className="text-gold" />
+                      <op.icon size={24} className="text-gold" />
                     </div>
                     <div>
-                      <h4 className="font-display text-lg font-bold text-cream mb-2">{p.title}</h4>
-                      <p className="text-sm text-ash leading-relaxed">{p.text}</p>
+                      <h4 className="font-display text-lg font-bold text-cream mb-2">{op.title}</h4>
+                      <span className="text-sm text-gold inline-flex items-center gap-1">
+                        Detalii <ArrowRight size={14} />
+                      </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </motion.div>
           </div>
@@ -427,7 +354,7 @@ export default function BrandDetailPage() {
       </section>
 
       {/* ============================================ */}
-      {/* TRUSTED BY LEADING PERFORMANCE BRANDS */}
+      {/* RAR BADGE */}
       {/* ============================================ */}
       <section className="py-20 px-6 bg-surface border-t border-gold/10">
         <div className="max-w-7xl mx-auto">
@@ -436,105 +363,19 @@ export default function BrandDetailPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Performance Partners
-            </span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              Trusted by the World's <span className="gold-text">Leading Performance Brands</span>
+            <img
+              src="/autorizat-rar.png"
+              alt={`${brand.name} — autorizat R.A.R.`}
+              className="h-20 object-contain mx-auto mb-6"
+            />
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
+              Service autorizat <span className="gold-text">R.A.R.</span>
             </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center">
-            {partnerLogos.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              >
-                <img src={p.logo} alt={p.name} className="h-16 md:h-20 object-contain" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================ */}
-      {/* DYNO RESULTS — THE NUMBERS DON'T LIE */}
-      {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Dyno Validated
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-cream">
-              The Numbers <span className="gold-text">Don't Lie</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-2xl p-8 md:p-12"
-          >
-            <div className="text-center mb-10">
-              <span className="text-xs tracking-[0.2em] uppercase text-gold mb-2 block">
-                {data.dyno.stage} · {data.dyno.model}
-              </span>
-              <h3 className="font-display text-2xl font-bold text-cream">
-                Performance Collection / {data.dyno.model}
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Power */}
-              <div className="rounded-xl bg-ink/50 p-6 text-center">
-                <p className="text-xs text-stone uppercase tracking-wide mb-4">Power</p>
-                <div className="flex items-center justify-center gap-6">
-                  <div>
-                    <p className="text-sm text-stone mb-1">Stock</p>
-                    <p className="font-display text-3xl font-bold text-cream">{data.dyno.stockPower}</p>
-                  </div>
-                  <ArrowRight size={24} className="text-gold" />
-                  <div>
-                    <p className="text-sm text-gold mb-1">Tuned</p>
-                    <p className="font-display text-3xl font-bold gold-text">{data.dyno.tunedPower}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Torque */}
-              <div className="rounded-xl bg-ink/50 p-6 text-center">
-                <p className="text-xs text-stone uppercase tracking-wide mb-4">Torque</p>
-                <div className="flex items-center justify-center gap-6">
-                  <div>
-                    <p className="text-sm text-stone mb-1">Stock</p>
-                    <p className="font-display text-3xl font-bold text-cream">{data.dyno.stockTorque}</p>
-                  </div>
-                  <ArrowRight size={24} className="text-gold" />
-                  <div>
-                    <p className="text-sm text-gold mb-1">Tuned</p>
-                    <p className="font-display text-3xl font-bold gold-text">{data.dyno.tunedTorque}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-xs text-stone mt-8 text-center">
-              * Results represent typical {data.dyno.stage.toLowerCase()} hardware builds.
+            <p className="text-ash max-w-2xl mx-auto">
+              Autorizația Registrului Auto Român îți garantează că motocicleta ta este pe mâini bune —
+              lucrări conforme, documentate și executate corect.
             </p>
           </motion.div>
         </div>
@@ -543,7 +384,7 @@ export default function BrandDetailPage() {
       {/* ============================================ */}
       {/* GALLERY */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-surface">
+      <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -553,15 +394,15 @@ export default function BrandDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              {data.name} Builds
+              Din atelier
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream">
-              The <span className="gold-text">Gallery</span>
+              <span className="gold-text">Galerie</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data.gallery.map((src, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryImages.map((src, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -572,7 +413,7 @@ export default function BrandDetailPage() {
               >
                 <img
                   src={src}
-                  alt={`${data.name} build ${i + 1}`}
+                  alt={`${brand.name} atelier ${i + 1}`}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = "none";
@@ -588,7 +429,7 @@ export default function BrandDetailPage() {
       {/* ============================================ */}
       {/* TESTIMONIALS */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
+      <section className="py-24 px-6 bg-surface">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -598,15 +439,15 @@ export default function BrandDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Client Feedback
+              Testimoniale
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream">
-              What {data.name} Owners <span className="gold-text">Say</span>
+              Ce spun <span className="gold-text">clienții</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {data.testimonials.map((t, i) => (
+            {testimonials.map((t, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -616,7 +457,7 @@ export default function BrandDetailPage() {
                 className="glass rounded-2xl p-8 hover:border-gold/30 transition-all duration-500"
               >
                 <Quote size={32} className="text-gold/40 mb-4" />
-                <p className="text-cream leading-relaxed mb-6 italic">"{t.text}"</p>
+                <p className="text-cream leading-relaxed mb-6 italic">„{t.text}"</p>
                 <div className="flex items-center gap-1 mb-4">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <Star key={s} size={16} className="text-gold fill-gold" />
@@ -635,7 +476,7 @@ export default function BrandDetailPage() {
       {/* ============================================ */}
       {/* FAQ */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-surface">
+      <section className="py-24 px-6 bg-canvas">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -645,10 +486,10 @@ export default function BrandDetailPage() {
             className="text-center mb-16"
           >
             <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">
-              Frequently Asked
+              Întrebări frecvente
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream">
-              {data.name} Tuning <span className="gold-text">FAQ</span>
+              Service {data.name} — <span className="gold-text">FAQ</span>
             </h2>
           </motion.div>
 
@@ -663,7 +504,7 @@ export default function BrandDetailPage() {
       {/* ============================================ */}
       {/* CTA */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
+      <section className="py-24 px-6 bg-surface">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -674,32 +515,29 @@ export default function BrandDetailPage() {
           >
             <ShieldCheck size={40} className="text-gold mx-auto mb-6" />
             <h2 className="font-display text-3xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-              Ready to Unlock Your <span className="gold-text">{data.name}'s</span> Potential?
+              Lasă {data.name}-ul tău <span className="gold-text">în grija noastră</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed mb-10 max-w-2xl mx-auto">
-              Book a session with {brand.name} and experience {data.name} tuning engineered for
-              real-world performance and long-term reliability.
+              Programează o vizită la {brand.name} — service autorizat R.A.R. în {brand.area}, {brand.city}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
               >
-                Book Tuning <ArrowRight size={18} />
+                Vreau programare service <ArrowRight size={18} />
               </Link>
               <Link
                 href="/servicii"
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
               >
-                Shop Parts
+                Vezi operațiile
               </Link>
               <a
-                href={brand.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={brand.phoneLink}
                 className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
               >
-                Contact a Technician
+                <Phone size={18} /> {brand.phone}
               </a>
             </div>
           </motion.div>

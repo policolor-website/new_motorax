@@ -2,47 +2,61 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Gauge, Zap, Wrench, TrendingUp, Settings, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Gauge, Wrench, Droplets, MoveVertical, RefreshCw, Timer, Cog, ShieldCheck, Sparkles, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// SERVICES
+// OPERAȚII SERVICE
 // ============================================
 const services = [
   {
-    slug: "engine-tuning",
+    slug: "reparatie-ambreiaje",
+    icon: Cog,
+    title: "Reparație ambreiaje",
+    text: "Diagnoză și reparații profesionale ale ambreiajului — plăci, arcuri, cabluri și reglaje pentru o cuplare perfectă.",
+    image: "/motorax/gallery/gallery-2.jpg",
+  },
+  {
+    slug: "schimbare-ulei-si-filtru",
+    icon: Droplets,
+    title: "Schimbare ulei și filtru",
+    text: "Revizie completă cu uleiuri și filtre potrivite motocicletei tale, pentru longevitatea motorului.",
+    image: "/motorax/gallery/gallery-3.jpg",
+  },
+  {
+    slug: "service-amortizoare",
+    icon: MoveVertical,
+    title: "Service amortizoare",
+    text: "Desfacere, curățare, schimb de ulei și reglaje personalizate ale suspensiilor pentru confort și siguranță.",
+    image: "/motorax/gallery/gallery-4.jpg",
+  },
+  {
+    slug: "schimbare-kit-transmisie",
+    icon: RefreshCw,
+    title: "Schimbare kit transmisie",
+    text: "Înlocuirea lanțului și a pinioanelor, cu reglare și lubrifiere corectă pentru o transmisie silențioasă.",
+    image: "/motorax/gallery/gallery-5.jpg",
+  },
+  {
+    slug: "sincronizare-carburatoare",
     icon: Gauge,
-    title: "Engine & ECU Tuning",
-    text: "ECU calibration focused on how the car delivers power in real driving, not just peak numbers.",
-    image: "/das/services/engine-tuning-banner.png",
+    title: "Sincronizare carburatoare",
+    text: "Echilibrarea carburatoarelor pentru ralanti stabil, consum corect și răspuns lin al accelerației.",
+    image: "/motorax/gallery/gallery-6.jpg",
   },
   {
-    slug: "dyno-testing",
-    icon: Zap,
-    title: "Dyno Testing",
-    text: "Independent dyno validation that shows exactly how a vehicle performs before and after tuning adjustments.",
-    image: "/das/services/dyno-testing-banner.png",
+    slug: "schimbare-distributie",
+    icon: Timer,
+    title: "Schimbare distribuție",
+    text: "Înlocuirea lanțului de distribuție și a componentelor asociate, la timp și cu piese de calitate.",
+    image: "/motorax/gallery/gallery-7.jpg",
   },
   {
-    slug: "exhaust-brake-upgrades",
+    slug: "mecanica-motor",
     icon: Wrench,
-    title: "Exhaust & Brake Upgrades",
-    text: "Hardware upgrades that improve breathing and stopping performance, designed to match increased power and driving demands.",
-    image: "/das/services/exhaust-banner.png",
-  },
-  {
-    slug: "turbo-upgrades",
-    icon: TrendingUp,
-    title: "Turbo Upgrades",
-    text: "Upgraded turbo systems engineered to support higher output while maintaining balance, control, and long-term engine health.",
-    image: "/das/services/turbo-banner.png",
-  },
-  {
-    slug: "maintenance",
-    icon: Settings,
-    title: "Maintenance",
-    text: "Routine service and care tailored for performance vehicles and long-term ownership.",
-    image: "/das/services/maintenance-banner.png",
+    title: "Operații de mecanică a motorului",
+    text: "De la schimb de bujii și supape la reparații complete — segmenti, pistoane, garnituri și teste de compresie.",
+    image: "/motorax/gallery/gallery-2.jpg",
   },
 ];
 
@@ -55,7 +69,7 @@ export default function ServicesPage() {
       <section className="relative py-32 px-6 bg-canvas overflow-hidden">
         <div className="absolute inset-0 noise" />
         <div className="absolute inset-0 opacity-20">
-          <img src="/das/services/engine-tuning-banner.png" alt="" className="w-full h-full object-cover" />
+          <img src="/motorax/gallery/gallery-4.jpg" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/60 to-ink" />
         </div>
         <div className="relative max-w-4xl mx-auto text-center">
@@ -64,12 +78,12 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Our Services</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Operații service</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight">
-              Car Tuning Services for <span className="gold-text">Real-World Results</span>
+              Service motociclete <span className="gold-text">autorizat R.A.R.</span>
             </h1>
             <p className="text-lg text-ash max-w-2xl mx-auto leading-relaxed">
-              Professional car tuning in Dubai focused on measurable gains and long-term reliability.
+              Reparații, revizii și mentenanță pentru motociclete, scutere, ATV-uri și biciclete în București.
             </p>
           </motion.div>
         </div>
@@ -87,12 +101,12 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">The Philosophy</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Filosofia noastră</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-6 leading-tight">
-              What Effective Car Tuning <span className="gold-text">Looks Like</span>
+              Fiecare job <span className="gold-text">este personal</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed">
-              Effective car tuning is about how a vehicle behaves as a whole, not isolated power figures. Tuning car systems properly focuses on real-world performance and drivability across everyday conditions. Successful vehicle tuning respects mechanical limits, considers platform behaviour, and aims for results that feel natural, predictable, and usable over time.
+              Service-ul {brand.name} a luat naștere din pasiune pentru motociclete. Pentru că avem o mică echipă, fiecare job este personal — ne menținem concentrarea și asigurăm servicii de înaltă calitate pentru fiecare motocicletă care intră pe poarta atelierului.
             </p>
           </motion.div>
         </div>
@@ -110,12 +124,12 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">The Approach</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Abordarea noastră</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-6 leading-tight">
-              How Our Car Tuning Shop <span className="gold-text">Delivers it</span>
+              Faci economie și câștigi <span className="gold-text">un mecanic de încredere</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed">
-              As a leading specialist of car tuning in the UAE, {brand.name} applies this philosophy through structured testing, platform-specific knowledge, and disciplined calibration processes. Every tuning project is approached with restraint and intent, improving power delivery and response while maintaining safe operating margins, long-term reliability, and confidence behind the wheel.
+              Ne străduim să îți oferim cele mai bune prețuri la service și să îți recomandăm doar reparațiile de care ai cu adevărat nevoie. Fie că e vorba de o revizie periodică sau de o reparație complexă a motorului, motocicleta ta este pe mâini bune.
             </p>
           </motion.div>
         </div>
@@ -133,8 +147,8 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Explore</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Our Services</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Explorează</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Operațiile noastre</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -168,7 +182,7 @@ export default function ServicesPage() {
                   <div className="p-5">
                     <p className="text-sm text-ash leading-relaxed mb-4">{srv.text}</p>
                     <span className="text-gold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Learn more <ArrowRight size={14} />
+                      Află mai multe <ArrowRight size={14} />
                     </span>
                   </div>
                 </Link>
@@ -195,25 +209,23 @@ export default function ServicesPage() {
             <ShieldCheck size={20} className="text-gold" />
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
+            Lasă reparațiile <span className="gold-text">în grija noastră</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Book a session with {brand.name} and experience tuning done right.
+            Programează o vizită la {brand.name} și lasă motocicleta pe mâini bune.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
             >
-              Book Appointment <ArrowRight size={18} />
+              Vreau programare service <ArrowRight size={18} />
             </Link>
             <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300"
             >
-              Contact a Technician
+              <Phone size={18} /> {brand.phone}
             </a>
           </div>
         </motion.div>

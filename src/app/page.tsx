@@ -3,103 +3,78 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Wrench, Gauge, Settings, Zap, ShieldCheck, Award, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, Wrench, Gauge, ShieldCheck, Sparkles, TrendingUp, Warehouse, Phone, Bike } from "lucide-react";
 import BuildingHero3D from "@/components/building-hero-3d";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// TRUSTED PARTNERS
+// MĂRCI DESERVITE
 // ============================================
 const partners = [
-  { name: "ECS Tuning", logo: "/das/logos/ecs-tuning.png" },
-  { name: "Akrapovic", logo: "/das/logos/akrapovic.png" },
-  { name: "Valvetronic", logo: "/das/logos/valvetronic.png" },
-  { name: "Armaspeed", logo: "/das/logos/armaspeed.png" },
-  { name: "KW Suspensions", logo: "/das/logos/kw-suspensions.png" },
-  { name: "IE", logo: "/das/logos/ie.png" },
-  { name: "do88", logo: "/das/logos/do88.png" },
-  { name: "Pure Turbos", logo: "/das/logos/pure-turbos.png" },
-  { name: "Novitec", logo: "/das/logos/novitec.png" },
+  { name: "Aprilia", logo: "/motorax/brands/aprilia.png" },
+  { name: "BMW", logo: "/motorax/brands/bmw.png" },
+  { name: "Harley-Davidson", logo: "/motorax/brands/harley.png" },
+  { name: "Honda", logo: "/motorax/brands/honda.png" },
+  { name: "Kawasaki", logo: "/motorax/brands/kawa.png" },
+  { name: "KTM", logo: "/motorax/brands/ktm.png" },
+  { name: "Suzuki", logo: "/motorax/brands/suzuki.png" },
+  { name: "Triumph", logo: "/motorax/brands/triumph.png" },
+  { name: "Yamaha", logo: "/motorax/brands/yamaha.png" },
 ];
 
 // ============================================
-// CORE SERVICES
+// SERVICII PRINCIPALE
 // ============================================
 const coreServices = [
   {
     icon: Wrench,
-    title: "Hardware Upgrades",
-    text: "Purpose-built performance parts chosen for compatibility, balance, and long-term vehicle health.",
+    title: "Operații Service Motociclete",
+    text: "Reparații, revizii și mentenanță pentru motociclete, scutere, ATV-uri și biciclete — de la schimb de ulei la mecanică de motor.",
     link: "/servicii",
-    cta: "Explore Parts",
+    cta: "Vezi operațiile",
   },
   {
     icon: Gauge,
-    title: "Performance Tuning",
-    text: "Engineering-led calibration focused on controlled power and results that feel rewarding to drive.",
-    link: "/servicii/engine-tuning",
-    cta: "Explore Tuning",
+    title: "Service Amortizoare",
+    text: "Diagnoză, curățare, schimb de ulei și reglaje personalizate ale suspensiilor pentru fiecare tip de motocicletă.",
+    link: "/servicii/service-amortizoare",
+    cta: "Detalii amortizoare",
   },
   {
-    icon: Settings,
-    title: "Vehicle Maintenance",
-    text: "Routine service and care tailored for performance vehicles and long-term ownership.",
-    link: "/servicii/maintenance",
-    cta: "View Maintenance",
+    icon: Warehouse,
+    title: "Hotel Motociclete",
+    text: "Depozitare de iarnă în spațiu privat, la 15–20°C, cu contract, proces-verbal și îngrijire a bateriei.",
+    link: "/evenimente",
+    cta: "Vezi pachetele",
   },
 ];
 
 // ============================================
-// BRAND BLUEPRINTS
+// HOTEL MOTOCICLETE
 // ============================================
-const blueprints = [
+const hotelPackages = [
   {
-    brand: "Audi",
-    model: "AUDI RS3 8Y",
-    collection: "Performance Collection / AUDI RS3 8Y",
-    description: "The RS3 8Y rewards precise calibration. Our Stage 1 build sharpens throttle response and broadens the torque band, turning the 2.5TFSI platform into a smoother, more confident performer on the road and on the dyno.",
-    stockPower: "400 BHP",
-    potentialPower: "450 BHP",
-    stockTorque: "500 NM",
-    potentialTorque: "580 NM",
-    note: "Stage 1 hardware builds",
-    link: "/brand-uri/audi",
+    name: "Pachet Standard",
+    price: "600 Lei",
+    features: [
+      "Depozitare spațiu privat",
+      "Temperatură ambientală 15–20°C",
+      "Contract, proces-verbal de predare și fotografii",
+      "Deconectare și încărcare baterie",
+    ],
+    link: "/evenimente",
   },
   {
-    brand: "BMW",
-    model: "G87 BMW M2",
-    collection: "Performance Collection / G87 BMW M2",
-    description: "The G87 M2's S58 engine is built for more. Our Stage 2 hardware package pairs upgraded cooling, intake, and downpipes with a custom calibration that transforms the M2 into a focused, rear-driven track weapon without losing everyday usability.",
-    stockPower: "453 BHP",
-    potentialPower: "680 BHP",
-    stockTorque: "550 NM",
-    potentialTorque: "900 NM",
-    note: "Stage 2 hardware builds",
-    link: "/brand-uri/bmw",
-  },
-  {
-    brand: "Mercedes",
-    model: "Mercedes E63 AMG",
-    collection: "Performance Collection / Mercedes E63 AMG",
-    description: "The M177 4.0L V8 BiTurbo has serious headroom. Our Stage 1 calibration refines boost delivery and ignition timing, lifting the E63 AMG from a fast saloon to a measured, devastatingly quick performance car with the refinement Mercedes owners expect.",
-    stockPower: "603 BHP",
-    potentialPower: "720 BHP",
-    stockTorque: "850 NM",
-    potentialTorque: "1,000 NM",
-    note: "Stage 1 hardware builds",
-    link: "/brand-uri/mercedes-benz",
-  },
-  {
-    brand: "Volkswagen",
-    model: "MK8 Volkswagen GTI",
-    collection: "Performance Collection / MK8 Volkswagen GTI",
-    description: "The MK8 GTI's EA888 2.0 TSI is a proven tuning platform. Our Stage 2 build combines hardware upgrades with precise ECU calibration, delivering stronger mid-range pull and sharper response while keeping the GTI's everyday practicality intact.",
-    stockPower: "245 BHP",
-    potentialPower: "330 BHP",
-    stockTorque: "370 NM",
-    potentialTorque: "475 NM",
-    note: "Stage 2 hardware builds",
-    link: "/brand-uri/volkswagen",
+    name: "Pachet Premium",
+    price: "2000 Lei",
+    features: [
+      "Tot ce include pachetul Standard",
+      "Vizite de întreținere la fiecare 3 săptămâni",
+      "Punerea motocicletei pe centrați",
+      "Reducere 20% la manoperă",
+      "Consultanță telefonică gratuită",
+    ],
+    link: "/evenimente",
   },
 ];
 
@@ -107,45 +82,39 @@ const blueprints = [
 // GALLERY
 // ============================================
 const galleryImages = [
-  { src: "/das/gallery/featured-1.png", alt: `${brand.name} Build` },
-  { src: "/das/gallery/featured-2.png", alt: `${brand.name} Build` },
-  { src: "/das/gallery/featured-3.png", alt: `${brand.name} Build` },
-  { src: "/das/gallery/featured-4.png", alt: `${brand.name} Build` },
-  { src: "/das/gallery/audi-1.jpg", alt: "Audi Performance Build" },
-  { src: "/das/gallery/bmw-1.jpg", alt: "BMW Performance Build" },
+  { src: "/motorax/gallery/gallery-2.jpg", alt: `${brand.name} — service motociclete` },
+  { src: "/motorax/gallery/gallery-3.jpg", alt: `${brand.name} — service motociclete` },
+  { src: "/motorax/gallery/gallery-4.jpg", alt: `${brand.name} — service motociclete` },
+  { src: "/motorax/gallery/gallery-5.jpg", alt: `${brand.name} — service motociclete` },
+  { src: "/motorax/gallery/gallery-6.jpg", alt: `${brand.name} — service motociclete` },
+  { src: "/motorax/gallery/gallery-7.jpg", alt: `${brand.name} — service motociclete` },
 ];
 
 // ============================================
-// VALUES
+// DE CE MOTORAX
 // ============================================
 const values = [
-  { icon: ShieldCheck, title: "Expertise", text: "Every decision is guided by technical understanding and measured outcomes." },
-  { icon: Award, title: "Craftsmanship", text: "Every upgrade is measured, refined, and executed with precision." },
-  { icon: Sparkles, title: "Integrity", text: "Work is carried out transparently, with respect and restraint for the vehicle." },
-  { icon: TrendingUp, title: "Consistency", text: "The same standards apply across every brand, platform, and project." },
+  { icon: Sparkles, title: "Fiecare job este personal", text: "Pentru că avem o mică echipă, fiecare job este personal. Ne menținem concentrarea și asigurăm servicii de înaltă calitate." },
+  { icon: ShieldCheck, title: "Autorizație R.A.R.", text: "Service-ul nostru are autorizația Registrului Auto Român, ceea ce îți garantează că motocicleta ta este pe mâini bune." },
+  { icon: TrendingUp, title: "Faci economie", text: "Ne străduim să îți oferim cele mai bune prețuri la service pentru motocicleta ta și îți recomandăm doar reparațiile de care ai nevoie." },
+  { icon: Bike, title: "Motoare, scutere, ATV-uri", text: "Deservim majoritatea mărcilor — de la motociclete de stradă la enduro, scutere, ATV-uri și biciclete." },
 ];
 
 // ============================================
-// BLOG PREVIEW
+// TESTIMONIALE
 // ============================================
-const blogPosts = [
+const testimonials = [
   {
-    slug: "how-to-choose-a-car-tuning-shop-in-dubai",
-    title: "How to Choose a Car Tuning Shop in Dubai",
-    date: "June 30, 2026",
-    excerpt: "Choosing the right tuning garage matters for safety, reliability, drivability, and long-term performance. Here is what European performance car owners in Dubai should check before tuning.",
+    name: "Cristi",
+    text: "Super profesioniști! Au reușit să repare și să facă să funcționeze perfect și super bine. Recomand cu căldură!",
   },
   {
-    slug: "best-performance-upgrades-for-bmw-m5-f90-owners-in-dubai",
-    title: "Best Performance Upgrades for BMW M5 F90 Owners in Dubai",
-    date: "June 30, 2026",
-    excerpt: "Own a BMW M5 F90 in Dubai? Learn which upgrades to consider first, from ECU tuning and exhaust systems to cooling, suspension, brakes, and supporting maintenance.",
+    name: "Costel",
+    text: "Totul este atât de profesional încât nu îmi pot imagina să merg cu motocicleta în altă parte. Acesta este locul!",
   },
   {
-    slug: "performance-exhaust-systems-dubai-european-cars",
-    title: "What to Know Before Upgrading Your European Car",
-    date: "May 25, 2026",
-    excerpt: "Thinking about a performance exhaust upgrade in Dubai? Here is what European performance car owners should consider before choosing an exhaust system.",
+    name: "Alex",
+    text: "Tot ce pot spune este că este superb! Au lucrat în detaliu totul, de la cele mai mici piese la sistemul complex de răcire. Recomand!",
   },
 ];
 
@@ -202,8 +171,18 @@ export default function HomePage() {
             }}
             className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-100"
           >
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-cream tracking-[0.1em] sm:tracking-[0.15em] px-4 text-center">
-              WELCOME
+            <h1 className="px-4 text-center">
+              {["MOTOARE.", "PRECIZIE.", "PASIUNE."].map((word, i) => (
+                <motion.span
+                  key={word}
+                  initial={{ opacity: 0, x: -80 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 + i * 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+                  className={`font-display block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-[0.08em] sm:tracking-[0.12em] leading-tight ${i === 2 ? "gold-text" : "text-cream"}`}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </h1>
           </div>
 
@@ -231,15 +210,13 @@ export default function HomePage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 glass text-gold text-sm sm:text-base font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300"
               >
-                Book Appointment <ArrowRight size={16} />
+                Vreau programare service <ArrowRight size={16} />
               </Link>
               <a
-                href={brand.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={brand.phoneLink}
                 className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 glass text-cream text-sm sm:text-base font-semibold rounded-lg hover:border-gold/50 hover:shadow-[0_4px_30px_rgba(255,107,0,0.25)] transition-all duration-300"
               >
-                Contact a Technician
+                <Phone size={16} /> Sună acum
               </a>
             </div>
           </div>
@@ -267,7 +244,7 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-10"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-2 block">Trusted Partner with Industry Leaders</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-2 block">Deservim majoritatea mărcilor de motociclete</span>
           </motion.div>
           <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-6 items-center justify-items-center">
             {partners.map((p, i) => (
@@ -277,9 +254,9 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="opacity-60 hover:opacity-100 transition-all duration-300"
               >
-                <img src={p.logo} alt={p.name} className="h-12 md:h-14 object-contain" />
+                <img src={p.logo} alt={p.name} className="h-12 md:h-14 object-contain invert mix-blend-screen" />
               </motion.div>
             ))}
           </div>
@@ -297,12 +274,12 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Who we are</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Cine suntem</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-              Your Complete <span className="gold-text">Performance Partner</span>
+              Lasă reparațiile <span className="gold-text">în grija noastră</span>
             </h2>
             <p className="text-lg text-ash leading-relaxed mb-8 max-w-3xl mx-auto">
-              One team, one integrated approach. We bring together performance hardware, car tuning, and specialist servicing under one roof for long-term vehicle confidence.
+              {brand.name} este un service autorizat R.A.R. pentru motociclete, scutere, ATV-uri și biciclete, situat în Sector 6, București. Credem că motocicleta ta merită atenție completă și cunoștințe solide.
             </p>
           </motion.div>
 
@@ -312,12 +289,12 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">How we work</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Cum lucrăm</span>
             <h3 className="font-display text-3xl md:text-4xl font-bold text-cream mb-6 leading-tight">
-              Where Engineering Meets <span className="gold-text">Experience</span>
+              Din pasiune <span className="gold-text">pentru motociclete</span>
             </h3>
             <p className="text-lg text-ash leading-relaxed max-w-3xl mx-auto">
-              Our work is grounded in decades of data-led decisions and proven processes, delivering performance that holds up over time, not just on paper.
+              Pentru că avem o mică echipă, fiecare job este personal. Ne menținem concentrarea și asigurăm servicii de înaltă calitate, recomandându-ți doar reparațiile de care ai cu adevărat nevoie.
             </p>
           </motion.div>
         </div>
@@ -335,8 +312,8 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Services</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Our Core Services</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Servicii</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Serviciile noastre</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -364,7 +341,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================ */}
-      {/* BRAND BLUEPRINTS */}
+      {/* HOTEL MOTOCICLETE */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-surface">
         <div className="max-w-7xl mx-auto">
@@ -375,55 +352,39 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Shop the Build</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Performance Blueprints</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Hotel Motociclete</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Depozitare de iarnă pentru motocicleta ta</h2>
+            <p className="text-ash max-w-2xl mx-auto">
+              Lăsăm motocicleta ta peste iarnă în spațiul nostru privat, la temperatură ambientală de 15–20°C. Perioada de depozitare: 1 noiembrie – 28 februarie.
+            </p>
           </motion.div>
 
-          <div className="space-y-8">
-            {blueprints.map((bp, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {hotelPackages.map((pkg, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6 }}
-                className="glass rounded-2xl overflow-hidden"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`glass rounded-2xl p-8 transition-all duration-500 ${i === 1 ? "border-gold/40" : "hover:border-gold/20"}`}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                  <div className={`p-8 lg:p-12 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                    <span className="text-xs tracking-[0.2em] uppercase text-gold mb-2 block">{bp.collection}</span>
-                    <h3 className="font-display text-3xl font-bold text-cream mb-4">The {bp.model} Blueprint</h3>
-                    <p className="text-sm text-ash leading-relaxed mb-6">
-                      {bp.description}
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="text-center p-4 rounded-xl bg-ink/50">
-                        <p className="text-xs text-stone uppercase tracking-wide mb-1">Stock Power</p>
-                        <p className="font-display text-2xl font-bold text-cream">{bp.stockPower}</p>
-                        <p className="text-xs text-gold mt-2">→ {bp.potentialPower}</p>
-                      </div>
-                      <div className="text-center p-4 rounded-xl bg-ink/50">
-                        <p className="text-xs text-stone uppercase tracking-wide mb-1">Stock Torque</p>
-                        <p className="font-display text-2xl font-bold text-cream">{bp.stockTorque}</p>
-                        <p className="text-xs text-gold mt-2">→ {bp.potentialTorque}</p>
-                      </div>
-                    </div>
-                    <Link href={bp.link} className="inline-flex items-center gap-2 text-gold hover:gap-3 transition-all">
-                      Browse {bp.brand} parts <ArrowRight size={16} />
-                    </Link>
-                    <p className="text-xs text-stone mt-3">* Results represent typical {bp.note}.</p>
-                  </div>
-                  <div className={`relative min-h-[300px] bg-ink/30 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <img
-                      src={`/das/gallery/${bp.brand.toLowerCase()}-1.jpg`}
-                      alt={bp.model}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
-                  </div>
-                </div>
+                {i === 1 && (
+                  <span className="inline-block text-xs tracking-[0.2em] uppercase text-ink bg-gold rounded-full px-3 py-1 mb-4">Recomandat</span>
+                )}
+                <h3 className="font-display text-2xl font-bold text-cream mb-2">{pkg.name}</h3>
+                <p className="font-display text-4xl font-bold gold-text mb-6">{pkg.price}</p>
+                <ul className="space-y-3 mb-8">
+                  {pkg.features.map((f, j) => (
+                    <li key={j} className="flex items-start gap-3 text-sm text-ash">
+                      <ShieldCheck size={16} className="text-gold mt-0.5 shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href={pkg.link} className="inline-flex items-center gap-2 text-gold hover:gap-3 transition-all">
+                  Detalii și rezervare <ArrowRight size={16} />
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -442,8 +403,8 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Why choose us</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Our Principles</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">De ce {brand.name}</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">De ce să ne alegi</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -482,10 +443,10 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Gallery</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Moments From the Garage Community</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Galerie</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-4">Din atelierul nostru</h2>
             <p className="text-ash max-w-2xl mx-auto">
-              Explore the highlights, relive the energy, and see the builds that stole the spotlight. Tag your photos and videos with {brand.hashtag} for a chance to be featured.
+              Motociclete reparate, revizate și îngrijite în service-ul nostru din București.
             </p>
           </motion.div>
 
@@ -512,7 +473,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================ */}
-      {/* BLOG PREVIEW */}
+      {/* TESTIMONIALE */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
@@ -523,34 +484,22 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Our Blogs</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Discover Industry Insights</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Testimoniale</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Ce spun clienții</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {blogPosts.map((post, i) => (
+            {testimonials.map((t, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="glass rounded-2xl p-8 hover:border-gold/30 transition-all duration-500 h-full"
               >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block glass rounded-2xl overflow-hidden hover:border-gold/30 transition-all duration-500 h-full"
-                >
-                  <div className="p-6">
-                    <span className="text-xs text-gold tracking-wide">{post.date}</span>
-                    <h3 className="font-display text-lg font-bold text-cream mt-3 mb-3 group-hover:text-gold transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-ash leading-relaxed mb-4">{post.excerpt}</p>
-                    <span className="text-gold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Read more <ArrowRight size={14} />
-                    </span>
-                  </div>
-                </Link>
+                <p className="text-sm text-ash leading-relaxed mb-6 italic">„{t.text}”</p>
+                <span className="font-display text-lg font-bold text-gold">{t.name}</span>
               </motion.div>
             ))}
           </div>
@@ -569,26 +518,24 @@ export default function HomePage() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
+            Ai nevoie de <span className="gold-text">service?</span>
           </h2>
           <p className="text-lg text-ash mb-10">
-            Have a question about tuning, upgrades, or maintenance? Visit our contact page or chat on WhatsApp and we'll get back to you right away.
+            Sună-ne pentru o programare rapidă sau treci pe la service — suntem în Sector 6, pe Str. Cetatea de Baltă.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
+            <a
+              href={brand.phoneLink}
               className="inline-flex items-center gap-2 px-10 py-5 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300 text-lg"
             >
-              Get in touch! <ArrowRight size={20} />
-            </Link>
-            <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              <Phone size={20} /> {brand.phone}
+            </a>
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2 px-10 py-5 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300 text-lg"
             >
-              Chat on WhatsApp
-            </a>
+              Pagina de contact <ArrowRight size={20} />
+            </Link>
           </div>
         </motion.div>
       </section>

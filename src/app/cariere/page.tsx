@@ -2,60 +2,47 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Wrench, Award, Users, Sparkles, MapPin, Clock, Briefcase } from "lucide-react";
+import { ArrowRight, Wrench, Award, Users, Sparkles, MapPin, Briefcase, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 // ============================================
-// WHAT SETS THE GARAGE APART
+// CE NE DIFERENȚIAZĂ
 // ============================================
 const differentiators = [
   {
     icon: Award,
-    title: "Rooted in European Craft",
-    text: `Originating in the UK and established in ${brand.city} in ${brand.founded}, our deep expertise in European platforms drives technical perfection.`,
+    title: "Autorizat R.A.R.",
+    text: "Lucrăm într-un service autorizat de Registrul Auto Român — proceduri clare și lucrări documentate.",
   },
   {
     icon: Wrench,
-    title: "Driven by Technical Discipline",
-    text: "Thoughtful engineering and careful execution thrive in our workshop. We blend strict technical discipline with measured respect for every vehicle.",
+    title: "Echipă mică, job personal",
+    text: "Fiecare job este personal. Înveți direct alături de mecanici cu experiență, fără birocrație.",
   },
   {
     icon: Sparkles,
-    title: "An Integrated Approach",
-    text: "One team, one approach. We unite performance hardware, precise tuning, and specialist servicing under one roof for long-term vehicle confidence.",
+    title: "Pasiune pentru motociclete",
+    text: "Motoare, scutere, ATV-uri și biciclete — varietate în fiecare zi, nu rutină.",
   },
 ];
 
 // ============================================
-// JOB OPENINGS
+// CE CĂUTĂM
 // ============================================
 const jobs = [
   {
-    title: "Automotive Technician – German Cars",
+    title: "Mecanic motociclete",
     location: `${brand.area}, ${brand.city}`,
-    type: "Full Time",
-    salary: "From 4000 AED + bonus overtime pay",
-    hours: "6 days a week, 9am to 6pm",
+    type: "Full-time",
     description:
-      "We are seeking a skilled technician with over 5 years of experience specializing in German marques like BMW, Audi, and Porsche. You will handle advanced diagnostics, ECU systems, and performance tuning in a high-paced luxury environment.",
+      "Căutăm un mecanic cu experiență în service de motociclete — revizii, transmisie, suspensii și mecanică de motor. Atenția la detalii și seriozitatea contează mai mult decât CV-ul.",
   },
   {
-    title: "Service Advisor – German Car Specialist",
+    title: "Ajutor mecanic",
     location: `${brand.area}, ${brand.city}`,
-    type: "Full Time",
-    salary: "From 5000 AED + bonus overtime pay",
-    hours: "6 days a week, 9am to 6pm",
+    type: "Full-time",
     description:
-      "Act as the vital link between our technicians and premium clients. You will manage job cards, coordinate parts ordering, and ensure customer satisfaction through professional communication and technical expertise in German vehicle maintenance.",
-  },
-  {
-    title: "Welder / Fabricator – Automotive",
-    location: `${brand.area}, ${brand.city}`,
-    type: "Full Time",
-    salary: "From 4500 AED + bonus overtime pay",
-    hours: "6 days a week, 9am to 6pm",
-    description:
-      "Join our fabrication team to work on custom exhaust systems and structural repairs for high-performance vehicles. Expert proficiency in MIG/TIG welding and metal shaping is required to meet our premium manufacturer standards.",
+      "Dacă ești pasionat de motociclete și vrei să înveți meserie într-un atelier adevărat, te ajutăm să crești alături de echipa noastră.",
   },
 ];
 
@@ -68,8 +55,8 @@ export default function CareersPage() {
       <section className="relative h-[55vh] min-h-[420px] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/das/gallery/featured-2.png"
-            alt={`${brand.name} careers`}
+            src="/motorax/gallery/gallery-4.jpg"
+            alt={`${brand.name} echipa`}
             className="w-full h-full object-cover"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
@@ -84,12 +71,12 @@ export default function CareersPage() {
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center max-w-3xl"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Careers</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Cariere</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-cream mb-6">
-              Take Part in the <span className="gold-text">Excellence</span>
+              Hai în <span className="gold-text">echipa noastră</span>
             </h1>
             <p className="text-lg text-ash leading-relaxed">
-              Joining {brand.name} means becoming a part of a team united by the ambition to strive for excellence.
+              La {brand.name} căutăm oameni pasionați de motociclete și de munca bine făcută.
             </p>
           </motion.div>
         </div>
@@ -108,63 +95,18 @@ export default function CareersPage() {
             className="text-center"
           >
             <p className="text-lg text-ash leading-relaxed">
-              Join a team where engineering-led discipline meets absolute performance. At {brand.name}, we are always looking for passionate professionals who thrive on technical complexity and share our measured respect for European automotive excellence. Whether you are a master technician or a specialist in workshop operations, we invite you to help us define the future of performance engineering in Dubai.
+              Suntem o echipă mică, în care fiecare job este personal. Dacă îți plac motocicletele,
+              meșteșugul și lumea service-ului — și vrei să lucrezi într-un atelier autorizat R.A.R.
+              din {brand.city} — ne-ar plăcea să te cunoaștem.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================ */}
-      {/* DRIVEN BY TECHNICAL DISCIPLINE */}
+      {/* CE NE DIFERENȚIAZĂ */}
       {/* ============================================ */}
       <section className="py-24 px-6 bg-surface">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-              style={{ willChange: "transform, opacity" }}
-            >
-              <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
-                <Award size={24} className="text-gold" />
-              </div>
-              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Our Heritage</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-                Driven by <span className="gold-text">Technical Discipline</span>
-              </h2>
-              <p className="text-lg text-ash leading-relaxed">
-                Born in the UK and established in Dubai, we set the standard for European performance. We blend deep expertise with data-driven precision to unlock your vehicle's true potential.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-              style={{ willChange: "transform, opacity" }}
-            >
-              <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
-                <Wrench size={24} className="text-gold" />
-              </div>
-              <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Our Standard</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6 leading-tight">
-                Precision is Our <span className="gold-text">Fuel</span>
-              </h2>
-              <p className="text-lg text-ash leading-relaxed">
-                We operate a clinical, performance-focused environment where thoughtful engineering thrives. From custom fabrication to exact ECU calibration, we deliver unrivaled craftsmanship without the guesswork.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================ */}
-      {/* WHAT SETS THE GARAGE APART */}
-      {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -173,8 +115,8 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Why Join Us</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">What Sets {brand.name} Apart?</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">De ce noi</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Ce ne diferențiază?</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -199,9 +141,9 @@ export default function CareersPage() {
       </section>
 
       {/* ============================================ */}
-      {/* JOB OPENINGS */}
+      {/* CE CĂUTĂM */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-surface">
+      <section className="py-24 px-6 bg-canvas">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -210,11 +152,11 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Open Positions</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Experienced Professionals — Permanent</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block">Poziții</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-cream">Ce căutăm</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {jobs.map((job, i) => (
               <motion.div
                 key={i}
@@ -235,20 +177,14 @@ export default function CareersPage() {
                   <span className="flex items-center gap-2 text-ash">
                     <Briefcase size={15} className="text-gold" /> {job.type}
                   </span>
-                  <span className="flex items-center gap-2 text-ash">
-                    <Award size={15} className="text-gold" /> Salary: {job.salary}
-                  </span>
-                  <span className="flex items-center gap-2 text-ash">
-                    <Clock size={15} className="text-gold" /> Weekly Hours: {job.hours}
-                  </span>
                 </div>
                 <p className="text-sm text-ash leading-relaxed mb-6 flex-grow">{job.description}</p>
-                <Link
-                  href="/contact"
+                <a
+                  href={brand.phoneLink}
                   className="inline-flex items-center gap-2 text-gold text-sm hover:gap-3 transition-all mt-auto"
                 >
-                  Apply now <ArrowRight size={14} />
-                </Link>
+                  Sună-ne <ArrowRight size={14} />
+                </a>
               </motion.div>
             ))}
           </div>
@@ -256,9 +192,9 @@ export default function CareersPage() {
       </section>
 
       {/* ============================================ */}
-      {/* SPONTANEOUS APPLICATION */}
+      {/* APLICAȚIE SPONTANĂ */}
       {/* ============================================ */}
-      <section className="py-24 px-6 bg-canvas">
+      <section className="py-24 px-6 bg-surface">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -271,55 +207,28 @@ export default function CareersPage() {
               <Users size={28} className="text-gold" />
             </div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-5">
-              We would love to hear from you!
+              Ne-ar plăcea să auzim de tine!
             </h2>
             <p className="text-ash leading-relaxed mb-8">
-              Are you passionate about joining our team but don't see an opening that matches your skills? Or do you have questions about building your career with us? Feel free to send us a spontaneous application or get in touch with any inquiries.
+              Ești pasionat de motociclete dar nu vezi o poziție potrivită? Sună-ne sau scrie-ne —
+              vorbim și vedem ce putem construi împreună.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
-            >
-              Get in Touch <ArrowRight size={18} />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={brand.phoneLink}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300"
+              >
+                <Phone size={18} /> {brand.phone}
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300"
+              >
+                Scrie-ne <ArrowRight size={18} />
+              </Link>
+            </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* ============================================ */}
-      {/* CTA */}
-      {/* ============================================ */}
-      <section className="py-32 px-6 bg-surface">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Go from fast to <span className="gold-text">faster</span>
-          </h2>
-          <p className="text-lg text-ash mb-10">
-            Have a question about tuning, upgrades, or maintenance? Visit our contact page or chat on WhatsApp and we'll get back to you right away.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-gold text-ink font-semibold rounded-lg hover:bg-gold-light transition-colors duration-300 text-lg"
-            >
-              Get in touch! <ArrowRight size={20} />
-            </Link>
-            <a
-              href={brand.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-10 py-5 glass text-cream font-semibold rounded-lg hover:border-gold/50 transition-all duration-300 text-lg"
-            >
-              Chat on WhatsApp
-            </a>
-          </div>
-        </motion.div>
       </section>
     </main>
   );
